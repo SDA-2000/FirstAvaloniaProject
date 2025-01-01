@@ -1,5 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:GetStartedApp.Views"
         xmlns:vm="using:GetStartedApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -18,19 +19,8 @@
     </Design.DataContext>
 
     <Grid ColumnDefinitions="Auto, *, Auto">
-        <Grid Column="0"
-              ColumnDefinitions="Auto, Auto">
-            <StackPanel Grid.Column="0">
-            </StackPanel>
-            
-            <TabControl Grid.Column="1">
-            </TabControl>
-        </Grid>
-        
-        <DockPanel Grid.Column="1">
-        </DockPanel>
-        
-        <StackPanel Grid.Column="2"></StackPanel>
+        <views:ControlPanel Grid.Column="0" />
+        <views:DocumentPanel Grid.Column="1" />
+        <views:StatusBar Grid.Column="2" />
     </Grid>
-
 </Window>
