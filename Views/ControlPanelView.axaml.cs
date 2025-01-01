@@ -1,13 +1,13 @@
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using Avalonia.ReactiveUI;
+using GetStartedApp.ViewModels;
 
 namespace GetStartedApp.Views;
 
-public partial class ControlPanelView : UserControl
+public partial class ControlPanelView : ReactiveUserControl<ControlPanelViewModel>
 {
     public ControlPanelView()
     {
         InitializeComponent();
+        DataContext = new ControlPanelViewModel();
     }
 }
