@@ -11,6 +11,9 @@
         Title="GetStartedApp"
         
         WindowStartupLocation="CenterScreen">
+    <Window.Styles>
+        <StyleInclude Source="../Styles/MainWindowStyle.axaml" />
+    </Window.Styles>
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -18,7 +21,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="Auto, *, Auto">
+    <Grid ColumnDefinitions="Auto, *, Auto" Classes="Main">
         <views:ControlPanelView Grid.Column="0" />
         <views:DocumentPanelView Grid.Column="1" />
         <views:StatusBarView Grid.Column="2" />

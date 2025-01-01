@@ -4,6 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GetStartedApp.Views.ControlPanelView">
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/ControlPanelStyle.axaml" />
+    </UserControl.Styles>
+    
     <Grid ColumnDefinitions="Auto, Auto">
         <StackPanel Grid.Column="0">
         </StackPanel>
