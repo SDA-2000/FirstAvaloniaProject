@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace GetStartedApp.Views;
 
-public partial class DocumentPanel : UserControl
+public partial class ControlPanelView : UserControl
 {
-    public DocumentPanel()
+    public ControlPanelView()
     {
         InitializeComponent();
     }
