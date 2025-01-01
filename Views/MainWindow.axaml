@@ -19,8 +19,8 @@
     </Design.DataContext>
 
     <Grid ColumnDefinitions="Auto, *, Auto">
-        <views:ControlPanel Grid.Column="0" />
-        <views:DocumentPanel Grid.Column="1" />
-        <views:StatusBar Grid.Column="2" />
+        <views:ControlPanelView Grid.Column="0" />
+        <views:DocumentPanelView Grid.Column="1" />
+        <views:StatusBarView Grid.Column="2" />
     </Grid>
 </Window>
