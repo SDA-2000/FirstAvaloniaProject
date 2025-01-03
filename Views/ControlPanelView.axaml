@@ -18,13 +18,46 @@
             <TabItem Header="Главное">
                 <WrapPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding FontFamilies}"
-                              SelectedItem="{Binding SelectedFontFamily}">
+                              SelectedItem="{Binding SelectedFontFamily}"
+                              Classes="FontFamily">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}" />
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
+                    
+                    <ComboBox ItemsSource="{Binding FontSizes}"
+                              SelectedItem="{Binding SelectedFontSize}"
+                              Classes="FontSize" />
+                    
+                    <Button Classes="FontSizeButton">
+                        <RelativePanel>
+                            <TextBlock x:Name="BigA" 
+                                       FontSize="16"
+                                       RelativePanel.AlignBottomWithPanel="True"
+                                       >A</TextBlock>
+                            <PathIcon Data="{StaticResource ArrowUp}"
+                                      Width="8"
+                                      Height="5"
+                                      RelativePanel.RightOf="BigA"
+                                      RelativePanel.AlignTopWithPanel="True" />
+                        </RelativePanel>
+                    </Button>
+                    
+                    <Button Classes="FontSizeButton">
+                        <RelativePanel>
+                            <TextBlock x:Name="SmallA" 
+                                       FontSize="13"
+                                       RelativePanel.AlignBottomWithPanel="True"
+                                       >A</TextBlock>
+                            <PathIcon Data="{StaticResource ArrowDown}"
+                                      Width="8"
+                                      Height="5"
+                                      RelativePanel.RightOf="SmallA"
+                                      RelativePanel.AlignBottomWithPanel="True" />
+                        </RelativePanel>
+                    </Button>
                 </WrapPanel>
             </TabItem>
         </TabControl>

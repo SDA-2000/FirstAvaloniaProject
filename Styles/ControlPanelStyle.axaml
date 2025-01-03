@@ -1,4 +1,15 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="ComboBox.FontFamily">
+        <Setter Property="Width" Value="120" />
+    </Style>
     
+    <Style Selector="ComboBox.FontSize">
+        <Setter Property="Width" Value="65" />
+    </Style>
+    
+    <Style Selector="Button.FontSizeButton">
+        <Setter Property="Height" Value="34" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
 </Styles>
