@@ -19,7 +19,7 @@
                 <WrapPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding FontFamilies}"
                               SelectedItem="{Binding SelectedFontFamily}"
-                              Classes="Fonts">
+                              Classes="FontFamily">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}" />
@@ -27,12 +27,10 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     
-                    <ComboBox>
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
+                    <ComboBox ItemsSource="{Binding FontSizes}"
+                              SelectedItem="{Binding SelectedFontSize}"
+                              Classes="FontSize">
+                        
                     </ComboBox>
                 </WrapPanel>
             </TabItem>
