@@ -8,7 +8,7 @@
         <Setter Property="Width" Value="65" />
     </Style>
     
-    <Style Selector="Button.FontSizeButton">
+    <Style Selector="Button.FontSize">
         <Setter Property="Height" Value="34" />
         <Setter Property="Background" Value="Transparent" />
     </Style>
