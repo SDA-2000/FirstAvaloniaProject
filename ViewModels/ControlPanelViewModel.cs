@@ -20,7 +20,7 @@ namespace GetStartedApp.ViewModels
                 new FontFamily("Tahoma"),
                 new FontFamily("Consolas")
             };
-            SelectedFontFamily = FontFamilies[0];
+            _selectedFontFamily = FontFamilies[0];
         }
 
         public ObservableCollection<FontFamily> FontFamilies { get; }
