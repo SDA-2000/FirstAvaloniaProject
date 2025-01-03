@@ -77,4 +77,19 @@ public class TextFormattingModel : ReactiveObject
         get => _backgroundColor;
         set => this.RaiseAndSetIfChanged(ref _backgroundColor, value);
     }
+
+    public TextFormattingModel() { }
+
+    public TextFormattingModel(FontFamily fontFamily, uint fontSize, FontWeight fontWeight, FontStyle fontStyle,
+        bool isBold, bool isItalic, Color textColor, Color backgroundColor)
+    {
+        FontFamily = fontFamily;
+        FontSize = fontSize;
+        FontWeight = fontWeight;
+        FontStyle = fontStyle;
+        IsBold = isBold;
+        IsItalic = isItalic;
+        TextColor = textColor;
+        BackgroundColor = backgroundColor;
+    }
 }
