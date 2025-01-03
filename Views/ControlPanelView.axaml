@@ -29,9 +29,35 @@
                     
                     <ComboBox ItemsSource="{Binding FontSizes}"
                               SelectedItem="{Binding SelectedFontSize}"
-                              Classes="FontSize">
-                        
-                    </ComboBox>
+                              Classes="FontSize" />
+                    
+                    <Button Height="35">
+                        <RelativePanel>
+                            <TextBlock x:Name="BigA" 
+                                       FontSize="16"
+                                       RelativePanel.AlignBottomWithPanel="True"
+                                       >A</TextBlock>
+                            <PathIcon Data="{StaticResource ArrowUp}"
+                                      Width="8"
+                                      Height="5"
+                                      RelativePanel.RightOf="BigA"
+                                      RelativePanel.AlignTopWithPanel="True" />
+                        </RelativePanel>
+                    </Button>
+                    
+                    <Button Height="35">
+                        <RelativePanel>
+                            <TextBlock x:Name="SmallA" 
+                                       FontSize="13"
+                                       RelativePanel.AlignBottomWithPanel="True"
+                                       >A</TextBlock>
+                            <PathIcon Data="{StaticResource ArrowDown}"
+                                      Width="8"
+                                      Height="5"
+                                      RelativePanel.RightOf="SmallA"
+                                      RelativePanel.AlignBottomWithPanel="True" />
+                        </RelativePanel>
+                    </Button>
                 </WrapPanel>
             </TabItem>
         </TabControl>

@@ -13,6 +13,7 @@
         WindowStartupLocation="CenterScreen">
     <Window.Styles>
         <StyleInclude Source="../Styles/MainWindowStyle.axaml" />
+        <StyleInclude Source="../Assets/Icons.axaml" />
     </Window.Styles>
 
     <Design.DataContext>
