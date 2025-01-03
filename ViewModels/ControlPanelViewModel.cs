@@ -1,3 +1,4 @@
+using GetStartedApp.Models;
 using System.Collections.ObjectModel;
 using ReactiveUI;
 using Avalonia.Media;
@@ -6,7 +7,7 @@ namespace GetStartedApp.ViewModels
 {
     public class ControlPanelViewModel : ReactiveObject
     {
-        private FontFamily? _selectedFontFamily;
+        private readonly TextFormattingModel _textFormatting = new TextFormattingModel();
     
         public ControlPanelViewModel()
         {
@@ -20,15 +21,20 @@ namespace GetStartedApp.ViewModels
                 new FontFamily("Tahoma"),
                 new FontFamily("Consolas")
             };
-            _selectedFontFamily = FontFamilies[0];
+            SelectedFontFamily = _textFormatting.FontFamily;
         }
 
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
         public FontFamily? SelectedFontFamily
         {
-            get => _selectedFontFamily;
-            set => this.RaiseAndSetIfChanged(ref _selectedFontFamily, value);
+            get => _textFormatting.FontFamily;
+            set
+            {
+                if (value == null || value == _textFormatting.FontFamily) return;
+                _textFormatting.FontFamily = value;
+                this.RaisePropertyChanged(nameof(SelectedFontFamily));
+            }
         }
     }   
 }
