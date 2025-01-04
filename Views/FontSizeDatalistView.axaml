@@ -2,10 +2,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="using:GetStartedApp.Converters"
              xmlns:viewModel="using:GetStartedApp.ViewModels"
              x:DataType="viewModel:FontSizeDatalistViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GetStartedApp.Views.FontSizeDatalistView">
+    <UserControl.Resources>
+        <converters:ToggleButtonIconConverter x:Key="ToggleButtonIconConverter" />
+    </UserControl.Resources>
+    
     <UserControl.Styles>
         <StyleInclude Source="../Styles/FontSizeDatalistStyle.axaml" />
     </UserControl.Styles>
@@ -13,12 +18,13 @@
     <Grid ColumnDefinitions="Auto,*">
         <StackPanel Grid.Column="0" Orientation="Horizontal">
             <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                     VerticalAlignment="Center"
                      x:Name="FontSizeSearch" 
                      Classes="FontSizeSearch"/>
-            <ToggleButton VerticalAlignment="Center"
-                          Command="{Binding ClickTogglePopup}">
-                <PathIcon Data="{StaticResource ArrowDown}" />
+            <ToggleButton Command="{Binding ClickTogglePopup}">
+                <PathIcon Data="{Binding IsPopupOpen, Converter={StaticResource ToggleButtonIconConverter}}" 
+                          Width="8"
+                          Height="5"
+                          VerticalAlignment="Center"/>
             </ToggleButton>
         </StackPanel>
         

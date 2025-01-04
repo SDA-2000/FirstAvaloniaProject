@@ -6,5 +6,16 @@
     
     <Style Selector="TextBox.FontSizeSearch">
         <Setter Property="Width" Value="60" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    
+    <Style Selector="ToggleButton">
+        <Setter Property="Height" Value="34"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    
+    <Style Selector="ToggleButton:checked">
+        <Setter Property="Background" Value="Gray"></Setter>
     </Style>
 </Styles>
