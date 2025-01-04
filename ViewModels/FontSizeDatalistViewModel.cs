@@ -2,6 +2,7 @@ using ReactiveUI;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using GetStartedApp.Models;
 
 namespace GetStartedApp.ViewModels
 {
@@ -10,9 +11,13 @@ namespace GetStartedApp.ViewModels
         private string? _searchText;
         private uint? _selectedFontSize;
         private bool _isPopupOpen = false;
+        private readonly TextFormattingModel _textFormatting;
 
-        public FontSizeDatalistViewModel()
+        public FontSizeDatalistViewModel(TextFormattingModel textFormatting)
         {
+            _textFormatting = textFormatting;
+            SearchText = textFormatting.FontSize.ToString();
+            
             FontSizes = new ObservableCollection<uint>
             {
                 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 72
@@ -35,6 +40,11 @@ namespace GetStartedApp.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref _searchText, value);
                 this.RaisePropertyChanged(nameof(FilteredFontSizes));
+                
+                if (uint.TryParse(value, out var fontSize))
+                {
+                    _textFormatting.FontSize = fontSize;
+                }
             }
         }
 

@@ -1,4 +1,3 @@
-using GetStartedApp.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Input;
 using System.Linq;
@@ -10,7 +9,6 @@ public partial class FontSizeDatalistView : UserControl
     public FontSizeDatalistView()
     {
         InitializeComponent();
-        DataContext = new FontSizeDatalistViewModel();
     }
     
     private void OnTextBoxKeyDown(object? sender, KeyEventArgs e)

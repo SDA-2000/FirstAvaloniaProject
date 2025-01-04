@@ -13,6 +13,7 @@
     
     <Grid ColumnDefinitions="Auto, Auto">
         <StackPanel Grid.Column="0">
+            <TextBlock Text="{Binding SelectedFontSize}" />
         </StackPanel>
             
         <TabControl Grid.Column="1">
@@ -28,7 +29,7 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     
-                    <views:FontSizeDatalistView></views:FontSizeDatalistView>
+                    <views:FontSizeDatalistView DataContext="{Binding FontSizeDatalist}" />
                     
                     <Button Classes="FontSize">
                         <RelativePanel>

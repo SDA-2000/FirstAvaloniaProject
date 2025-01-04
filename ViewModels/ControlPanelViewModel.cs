@@ -8,7 +8,8 @@ namespace GetStartedApp.ViewModels
     public class ControlPanelViewModel : ReactiveObject
     {
         private readonly TextFormattingModel _textFormatting = new TextFormattingModel();
-    
+        private readonly FontSizeDatalistViewModel _fontSizeDatalist;
+        
         public ControlPanelViewModel()
         {
             FontFamilies = new ObservableCollection<FontFamily>
@@ -23,31 +24,10 @@ namespace GetStartedApp.ViewModels
             };
             SelectedFontFamily = _textFormatting.FontFamily;
             
-            FontSizes = new ObservableCollection<uint>
-            {
-                8,
-                9,
-                10,
-                11,
-                12,
-                14,
-                16,
-                18,
-                20,
-                22,
-                24,
-                26,
-                28,
-                30,
-                32,
-                34,
-                36
-            };
-            SelectedFontSize = _textFormatting.FontSize;
+            _fontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
         }
 
         public ObservableCollection<FontFamily> FontFamilies { get; }
-        public ObservableCollection<uint> FontSizes { get; }
 
         public FontFamily? SelectedFontFamily
         {
@@ -59,7 +39,7 @@ namespace GetStartedApp.ViewModels
                 this.RaisePropertyChanged(nameof(SelectedFontFamily));
             }
         }
-
+        
         public uint? SelectedFontSize
         {
             get => _textFormatting.FontSize;
@@ -67,8 +47,10 @@ namespace GetStartedApp.ViewModels
             {
                 if (value == null || value == _textFormatting.FontSize) return;
                 _textFormatting.FontSize = value.Value;
-                this.RaisePropertyChanged(nameof(SelectedFontFamily));
+                this.RaisePropertyChanged(nameof(SelectedFontSize));
             }
         }
+        
+        public FontSizeDatalistViewModel FontSizeDatalist => _fontSizeDatalist;
     }   
 }
