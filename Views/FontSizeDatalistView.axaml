@@ -19,7 +19,8 @@
         <StackPanel Grid.Column="0" Orientation="Horizontal">
             <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                      x:Name="FontSizeSearch" 
-                     Classes="FontSizeSearch"/>
+                     Classes="FontSizeSearch"
+                     KeyDown="OnTextBoxKeyDown" />
             <ToggleButton Command="{Binding ClickTogglePopup}">
                 <PathIcon Data="{Binding IsPopupOpen, Converter={StaticResource ToggleButtonIconConverter}}" 
                           Width="8"
