@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModel="using:GetStartedApp.ViewModels"
+             x:DataType="viewModel:FontSizeDatalistViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GetStartedApp.Views.FontSizeDatalistView">
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/FontSizeDatalistStyle.axaml" />
+    </UserControl.Styles>
+    
+    <Grid ColumnDefinitions="Auto,*">
+        <StackPanel Grid.Column="0" Orientation="Horizontal">
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     x:Name="FontSizeSearch" 
+                     Classes="FontSizeSearch"/>
+            <ToggleButton VerticalAlignment="Center"
+                          Command="{Binding ClickTogglePopup}">
+                <PathIcon Data="{StaticResource ArrowDown}" />
+            </ToggleButton>
+        </StackPanel>
+        
+        <Popup Grid.Column="1" 
+               IsOpen="{Binding IsPopupOpen}" 
+               PlacementTarget="{Binding ElementName=FontSizeSearch}"
+               Placement="Bottom"
+               Height="120">
+            <Border Background="White" BorderBrush="Gray" BorderThickness="1">
+                <ListBox ItemsSource="{Binding FilteredFontSizes}"
+                         SelectedItem="{Binding SelectedFontSize}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>
