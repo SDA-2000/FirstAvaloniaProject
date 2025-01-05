@@ -1,8 +1,9 @@
-using ReactiveUI;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
 using GetStartedApp.Models;
+using ReactiveUI;
+using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Linq;
 
 namespace GetStartedApp.ViewModels
 {
@@ -39,12 +40,7 @@ namespace GetStartedApp.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _searchText, value);
-                this.RaisePropertyChanged(nameof(FilteredFontSizes));
-                
-                if (uint.TryParse(value, out var fontSize))
-                {
-                    _textFormatting.FontSize = fontSize;
-                }
+                if (!String.IsNullOrEmpty(value)) _textFormatting.FontSize = uint.Parse(value);
             }
         }
 
@@ -59,12 +55,5 @@ namespace GetStartedApp.ViewModels
             get => _isPopupOpen;
             set => this.RaiseAndSetIfChanged(ref _isPopupOpen, value);
         }
-
-        public ObservableCollection<uint> FilteredFontSizes =>
-            string.IsNullOrWhiteSpace(SearchText)
-                ? FontSizes
-                : new ObservableCollection<uint>(
-                    FontSizes.Where(size => size.ToString().Contains(SearchText))
-                );
     }
 }

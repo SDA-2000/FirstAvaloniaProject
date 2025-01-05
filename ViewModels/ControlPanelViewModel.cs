@@ -52,5 +52,7 @@ namespace GetStartedApp.ViewModels
                 this.RaisePropertyChanged(nameof(SelectedFontSize));
             }
         }
+        
+        public TextFormattingModel TextFormatting {get => _textFormatting;}
     }   
 }

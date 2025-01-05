@@ -13,7 +13,7 @@
     
     <Grid ColumnDefinitions="Auto, Auto">
         <StackPanel Grid.Column="0">
-            <TextBlock Text="{Binding SelectedFontSize}" />
+            <TextBlock Text="{Binding TextFormatting.FontSize}"></TextBlock>
         </StackPanel>
             
         <TabControl Grid.Column="1">

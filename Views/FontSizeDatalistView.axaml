@@ -35,7 +35,7 @@
                Placement="Bottom"
                Height="120">
             <Border Background="White" BorderBrush="Gray" BorderThickness="1">
-                <ListBox ItemsSource="{Binding FilteredFontSizes}"
+                <ListBox ItemsSource="{Binding FontSizes}"
                          SelectedItem="{Binding SelectedFontSize}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
