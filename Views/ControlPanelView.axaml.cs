@@ -8,6 +8,5 @@ public partial class ControlPanelView : ReactiveUserControl<ControlPanelViewMode
     public ControlPanelView()
     {
         InitializeComponent();
-        DataContext = new ControlPanelViewModel();
     }
 }

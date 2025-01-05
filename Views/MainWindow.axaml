@@ -1,12 +1,12 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:views="clr-namespace:GetStartedApp.Views"
-        xmlns:vm="using:GetStartedApp.ViewModels"
+        xmlns:views="using:GetStartedApp.Views"
+        xmlns:viewModels="using:GetStartedApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GetStartedApp.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="viewModels:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="GetStartedApp"
         
@@ -17,14 +17,12 @@
     </Window.Styles>
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <viewModels:MainWindowViewModel/>
     </Design.DataContext>
-
+    
     <Grid ColumnDefinitions="Auto, *, Auto" Classes="Main">
-        <views:ControlPanelView Grid.Column="0" />
-        <views:DocumentPanelView Grid.Column="1" />
-        <views:StatusBarView Grid.Column="2" />
+        <views:ControlPanelView Grid.Column="0" DataContext="{Binding ControlPanelViewModel}" />
+        <views:DocumentPanelView Grid.Column="1" DataContext="{Binding DocumentPanelViewModel}" />
+        <views:StatusBarView Grid.Column="2" DataContext="{Binding StatusBarViewModel}" />
     </Grid>
 </Window>

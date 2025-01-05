@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:GetStartedApp.Views"
              xmlns:viewModels="using:GetStartedApp.ViewModels"
              x:DataType="viewModels:ControlPanelViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -12,6 +13,7 @@
     
     <Grid ColumnDefinitions="Auto, Auto">
         <StackPanel Grid.Column="0">
+            
         </StackPanel>
             
         <TabControl Grid.Column="1">
@@ -27,16 +29,15 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     
-                    <ComboBox ItemsSource="{Binding FontSizes}"
-                              SelectedItem="{Binding SelectedFontSize}"
-                              Classes="FontSize" />
+                    <views:FontSizeDatalistView DataContext="{Binding FontSizeDatalist}" />
                     
-                    <Button Classes="FontSizeButton">
+                    <Button Classes="FontSize"
+                            Command="{Binding IncreaseFontSize}">
                         <RelativePanel>
                             <TextBlock x:Name="BigA" 
                                        FontSize="16"
                                        RelativePanel.AlignBottomWithPanel="True"
-                                       >A</TextBlock>
+                                       Text="A" />
                             <PathIcon Data="{StaticResource ArrowUp}"
                                       Width="8"
                                       Height="5"
@@ -45,12 +46,13 @@
                         </RelativePanel>
                     </Button>
                     
-                    <Button Classes="FontSizeButton">
+                    <Button Classes="FontSize"
+                            Command="{Binding ReduceFontSize}">
                         <RelativePanel>
                             <TextBlock x:Name="SmallA" 
                                        FontSize="13"
                                        RelativePanel.AlignBottomWithPanel="True"
-                                       >A</TextBlock>
+                                       Text="A" />
                             <PathIcon Data="{StaticResource ArrowDown}"
                                       Width="8"
                                       Height="5"

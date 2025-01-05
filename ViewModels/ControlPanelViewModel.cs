@@ -1,16 +1,20 @@
 using GetStartedApp.Models;
-using System.Collections.ObjectModel;
 using ReactiveUI;
 using Avalonia.Media;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace GetStartedApp.ViewModels
 {
     public class ControlPanelViewModel : ReactiveObject
     {
-        private readonly TextFormattingModel _textFormatting = new TextFormattingModel();
-    
-        public ControlPanelViewModel()
+        private readonly TextFormattingModel _textFormatting;
+        
+        public ControlPanelViewModel(TextFormattingModel textFormatting)
         {
+            _textFormatting = textFormatting;
+            FontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
+            
             FontFamilies = new ObservableCollection<FontFamily>
             {
                 new FontFamily("Calibri"),
@@ -22,32 +26,26 @@ namespace GetStartedApp.ViewModels
                 new FontFamily("Consolas")
             };
             SelectedFontFamily = _textFormatting.FontFamily;
-            
-            FontSizes = new ObservableCollection<uint>
-            {
-                8,
-                9,
-                10,
-                11,
-                12,
-                14,
-                16,
-                18,
-                20,
-                22,
-                24,
-                26,
-                28,
-                30,
-                32,
-                34,
-                36
-            };
-            SelectedFontSize = _textFormatting.FontSize;
-        }
 
+            ReduceFontSize = ReactiveCommand.Create(() =>
+            {
+                if (_textFormatting.FontSize <= 1) return;
+                _textFormatting.FontSize--;
+                FontSizeDatalist.SearchText = _textFormatting.FontSize.ToString();
+            });
+            IncreaseFontSize = ReactiveCommand.Create(() =>
+            {
+                if (_textFormatting.FontSize >= 99) return;
+                _textFormatting.FontSize++;
+                FontSizeDatalist.SearchText = _textFormatting.FontSize.ToString();
+            });
+        }
+        
+        public ICommand ReduceFontSize { get; }
+        public ICommand IncreaseFontSize { get; }
+        
+        public FontSizeDatalistViewModel FontSizeDatalist { get; }
         public ObservableCollection<FontFamily> FontFamilies { get; }
-        public ObservableCollection<uint> FontSizes { get; }
 
         public FontFamily? SelectedFontFamily
         {
@@ -59,7 +57,7 @@ namespace GetStartedApp.ViewModels
                 this.RaisePropertyChanged(nameof(SelectedFontFamily));
             }
         }
-
+        
         public uint? SelectedFontSize
         {
             get => _textFormatting.FontSize;
@@ -67,7 +65,7 @@ namespace GetStartedApp.ViewModels
             {
                 if (value == null || value == _textFormatting.FontSize) return;
                 _textFormatting.FontSize = value.Value;
-                this.RaisePropertyChanged(nameof(SelectedFontFamily));
+                this.RaisePropertyChanged(nameof(SelectedFontSize));
             }
         }
     }   
