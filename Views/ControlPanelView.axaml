@@ -31,12 +31,13 @@
                     
                     <views:FontSizeDatalistView DataContext="{Binding FontSizeDatalist}" />
                     
-                    <Button Classes="FontSize">
+                    <Button Classes="FontSize"
+                            Command="{Binding IncreaseFontSize}">
                         <RelativePanel>
                             <TextBlock x:Name="BigA" 
                                        FontSize="16"
                                        RelativePanel.AlignBottomWithPanel="True"
-                                       >A</TextBlock>
+                                       Text="A" />
                             <PathIcon Data="{StaticResource ArrowUp}"
                                       Width="8"
                                       Height="5"
@@ -45,12 +46,13 @@
                         </RelativePanel>
                     </Button>
                     
-                    <Button Classes="FontSize">
+                    <Button Classes="FontSize"
+                            Command="{Binding ReduceFontSize}">
                         <RelativePanel>
                             <TextBlock x:Name="SmallA" 
                                        FontSize="13"
                                        RelativePanel.AlignBottomWithPanel="True"
-                                       >A</TextBlock>
+                                       Text="A" />
                             <PathIcon Data="{StaticResource ArrowDown}"
                                       Width="8"
                                       Height="5"

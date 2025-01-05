@@ -1,7 +1,8 @@
 using GetStartedApp.Models;
-using System.Collections.ObjectModel;
 using ReactiveUI;
 using Avalonia.Media;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace GetStartedApp.ViewModels
 {
@@ -25,10 +26,25 @@ namespace GetStartedApp.ViewModels
                 new FontFamily("Consolas")
             };
             SelectedFontFamily = _textFormatting.FontFamily;
+
+            ReduceFontSize = ReactiveCommand.Create(() =>
+            {
+                if (_textFormatting.FontSize <= 1) return;
+                _textFormatting.FontSize--;
+                FontSizeDatalist.SearchText = _textFormatting.FontSize.ToString();
+            });
+            IncreaseFontSize = ReactiveCommand.Create(() =>
+            {
+                if (_textFormatting.FontSize >= 99) return;
+                _textFormatting.FontSize++;
+                FontSizeDatalist.SearchText = _textFormatting.FontSize.ToString();
+            });
         }
         
+        public ICommand ReduceFontSize { get; }
+        public ICommand IncreaseFontSize { get; }
+        
         public FontSizeDatalistViewModel FontSizeDatalist { get; }
-
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
         public FontFamily? SelectedFontFamily
@@ -52,7 +68,5 @@ namespace GetStartedApp.ViewModels
                 this.RaisePropertyChanged(nameof(SelectedFontSize));
             }
         }
-        
-        public TextFormattingModel TextFormatting {get => _textFormatting;}
     }   
 }
