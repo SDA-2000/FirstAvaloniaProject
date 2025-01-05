@@ -10,7 +10,7 @@ namespace GetStartedApp.ViewModels
     public class FontSizeDatalistViewModel : ReactiveObject
     {
         private string? _searchText;
-        private uint? _selectedFontSize;
+        private string? _selectedFontSize;
         private bool _isPopupOpen = false;
         private readonly TextFormattingModel _textFormatting;
 
@@ -19,9 +19,10 @@ namespace GetStartedApp.ViewModels
             _textFormatting = textFormatting;
             SearchText = textFormatting.FontSize.ToString();
             
-            FontSizes = new ObservableCollection<uint>
+            FontSizes = new ObservableCollection<string>
             {
-                8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 72
+                "8", "9", "10", "11", "12", "14", "16", "18", "20", 
+                "22", "24", "26", "28", "30", "32", "34", "36", "72"
             };
 
             ClickTogglePopup = ReactiveCommand.Create(() =>
@@ -32,7 +33,7 @@ namespace GetStartedApp.ViewModels
         
         public ICommand ClickTogglePopup { get; }
 
-        public ObservableCollection<uint> FontSizes { get; }
+        public ObservableCollection<string> FontSizes { get; }
 
         public string? SearchText
         {
@@ -45,10 +46,15 @@ namespace GetStartedApp.ViewModels
             }
         }
 
-        public uint? SelectedFontSize
+        public string? SelectedFontSize
         {
             get => _selectedFontSize;
-            set => this.RaiseAndSetIfChanged(ref _selectedFontSize, value);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedFontSize, value);
+                SearchText = _selectedFontSize;
+                IsPopupOpen = false;
+            }
         }
 
         public bool IsPopupOpen
