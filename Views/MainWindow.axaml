@@ -19,10 +19,10 @@
     <Design.DataContext>
         <viewModels:MainWindowViewModel/>
     </Design.DataContext>
-
+    
     <Grid ColumnDefinitions="Auto, *, Auto" Classes="Main">
-        <views:ControlPanelView Grid.Column="0" />
-        <views:DocumentPanelView Grid.Column="1" />
-        <views:StatusBarView Grid.Column="2" />
+        <views:ControlPanelView Grid.Column="0" DataContext="{Binding ControlPanelViewModel}" />
+        <views:DocumentPanelView Grid.Column="1" DataContext="{Binding DocumentPanelViewModel}" />
+        <views:StatusBarView Grid.Column="2" DataContext="{Binding StatusBarViewModel}" />
     </Grid>
 </Window>

@@ -7,11 +7,13 @@ namespace GetStartedApp.ViewModels
 {
     public class ControlPanelViewModel : ReactiveObject
     {
-        private readonly TextFormattingModel _textFormatting = new TextFormattingModel();
-        private readonly FontSizeDatalistViewModel _fontSizeDatalist;
+        private readonly TextFormattingModel _textFormatting;
         
-        public ControlPanelViewModel()
+        public ControlPanelViewModel(TextFormattingModel textFormatting)
         {
+            _textFormatting = textFormatting;
+            FontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
+            
             FontFamilies = new ObservableCollection<FontFamily>
             {
                 new FontFamily("Calibri"),
@@ -23,9 +25,9 @@ namespace GetStartedApp.ViewModels
                 new FontFamily("Consolas")
             };
             SelectedFontFamily = _textFormatting.FontFamily;
-            
-            _fontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
         }
+        
+        public FontSizeDatalistViewModel FontSizeDatalist { get; }
 
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
@@ -50,7 +52,5 @@ namespace GetStartedApp.ViewModels
                 this.RaisePropertyChanged(nameof(SelectedFontSize));
             }
         }
-        
-        public FontSizeDatalistViewModel FontSizeDatalist => _fontSizeDatalist;
     }   
 }
