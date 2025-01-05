@@ -20,7 +20,8 @@
             <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                      x:Name="FontSizeSearch" 
                      Classes="FontSizeSearch"
-                     KeyDown="OnTextBoxKeyDown" />
+                     KeyDown="OnTextBoxKeyDown"
+                     MaxLength="2" />
             <ToggleButton Command="{Binding ClickTogglePopup}">
                 <PathIcon Data="{Binding IsPopupOpen, Converter={StaticResource ToggleButtonIconConverter}}" 
                           Width="8"

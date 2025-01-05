@@ -40,7 +40,8 @@ namespace GetStartedApp.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _searchText, value);
-                if (!String.IsNullOrEmpty(value)) _textFormatting.FontSize = uint.Parse(value);
+                if (String.IsNullOrEmpty(value)) return;
+                _textFormatting.FontSize = uint.Parse(value) == 0 ? 1 : uint.Parse(value);
             }
         }
 
