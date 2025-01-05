@@ -16,26 +16,32 @@
     </UserControl.Styles>
     
     <Grid ColumnDefinitions="Auto,*">
-        <StackPanel Grid.Column="0" Orientation="Horizontal">
-            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                     x:Name="FontSizeSearch" 
-                     Classes="FontSizeSearch"
-                     KeyDown="OnTextBoxKeyDown"
-                     MaxLength="2" />
-            <ToggleButton Command="{Binding ClickTogglePopup}">
-                <PathIcon Data="{Binding IsPopupOpen, Converter={StaticResource ToggleButtonIconConverter}}" 
-                          Width="8"
-                          Height="5"
-                          VerticalAlignment="Center"/>
-            </ToggleButton>
-        </StackPanel>
+        <Border Grid.Column="0"
+                BorderBrush="Gray" 
+                BorderThickness="1"
+                CornerRadius="5"
+                x:Name="FontSizeSearch">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         Classes="FontSizeSearch no-border"
+                         KeyDown="OnTextBoxKeyDown" />
+                <ToggleButton Command="{Binding ClickTogglePopup}">
+                    <PathIcon Data="{Binding IsPopupOpen, Converter={StaticResource ToggleButtonIconConverter}}" 
+                              Width="8"
+                              Height="5"
+                              VerticalAlignment="Center"/>
+                </ToggleButton>
+            </StackPanel>
+        </Border>
         
         <Popup Grid.Column="1" 
                IsOpen="{Binding IsPopupOpen}" 
                PlacementTarget="{Binding ElementName=FontSizeSearch}"
-               Placement="Bottom"
-               Height="120">
-            <Border Background="White" BorderBrush="Gray" BorderThickness="1">
+               Placement="Bottom">
+            <Border Background="White" 
+                    BorderBrush="Gray" 
+                    BorderThickness="1"
+                    CornerRadius="5">
                 <ListBox ItemsSource="{Binding FontSizes}"
                          SelectedItem="{Binding SelectedFontSize}">
                     <ListBox.ItemTemplate>
