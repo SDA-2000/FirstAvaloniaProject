@@ -26,6 +26,9 @@ namespace GetStartedApp.ViewModels
                 new FontFamily("Consolas")
             };
             SelectedFontFamily = _textFormatting.FontFamily;
+            
+            IsBold = _textFormatting.IsBold;
+            
 
             ReduceFontSize = ReactiveCommand.Create(() =>
             {
@@ -66,6 +69,36 @@ namespace GetStartedApp.ViewModels
                 if (value == null || value == _textFormatting.FontSize) return;
                 _textFormatting.FontSize = value.Value;
                 this.RaisePropertyChanged(nameof(SelectedFontSize));
+            }
+        }
+
+        public bool IsBold
+        {
+            get => _textFormatting.IsBold;
+            set
+            {
+                _textFormatting.IsBold = value;
+                this.RaisePropertyChanged(nameof(IsBold));
+            }
+        }
+        
+        public bool IsItalic
+        {
+            get => _textFormatting.IsItalic;
+            set
+            {
+                _textFormatting.IsItalic = value;
+                this.RaisePropertyChanged(nameof(IsItalic));
+            }
+        }
+        
+        public bool IsUnderline
+        {
+            get => _textFormatting.IsUnderline;
+            set
+            {
+                _textFormatting.IsUnderline = value;
+                this.RaisePropertyChanged(nameof(IsUnderline));
             }
         }
     }   

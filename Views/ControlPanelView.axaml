@@ -31,7 +31,7 @@
                     
                     <views:FontSizeDatalistView DataContext="{Binding FontSizeDatalist}" />
                     
-                    <Button Classes="FontSize"
+                    <Button Classes="ControlPanel"
                             Command="{Binding IncreaseFontSize}">
                         <RelativePanel>
                             <TextBlock x:Name="BigA" 
@@ -46,7 +46,7 @@
                         </RelativePanel>
                     </Button>
                     
-                    <Button Classes="FontSize"
+                    <Button Classes="ControlPanel"
                             Command="{Binding ReduceFontSize}">
                         <RelativePanel>
                             <TextBlock x:Name="SmallA" 
@@ -60,6 +60,27 @@
                                       RelativePanel.AlignBottomWithPanel="True" />
                         </RelativePanel>
                     </Button>
+                    
+                    <ToggleButton Classes="ControlPanel"
+                                  IsChecked="{Binding IsBold}">
+                        <TextBlock FontSize="16"
+                                   FontWeight="Bold"
+                                   Text="Ж" />
+                    </ToggleButton>
+                    
+                    <ToggleButton Classes="ControlPanel"
+                                  IsChecked="{Binding IsItalic}">
+                        <TextBlock FontSize="16" 
+                                   FontStyle="Italic"
+                                   Text="К" />
+                    </ToggleButton>
+                    
+                    <ToggleButton Classes="ControlPanel"
+                                  IsChecked="{Binding IsUnderline}">
+                        <TextBlock FontSize="16"
+                                   TextDecorations="Underline"
+                                   Text="Ч" />
+                    </ToggleButton>
                 </WrapPanel>
             </TabItem>
         </TabControl>
