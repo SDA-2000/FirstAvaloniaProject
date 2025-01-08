@@ -81,6 +81,8 @@
                                    TextDecorations="Underline"
                                    Text="Ч" />
                     </ToggleButton>
+                    
+                    <views:ColorPickerView />
                 </WrapPanel>
             </TabItem>
         </TabControl>
