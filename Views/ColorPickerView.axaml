@@ -8,10 +8,9 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GetStartedApp.Views.ColorPickerView">
     <StackPanel>
-        <!-- ColorPicker -->
-        <colorPicker:ColorPicker Width="100" Height="50" Color="{Binding SelectedColor}" />
-
-        <!-- Текущий выбранный цвет -->
-        <Rectangle Width="100" Height="50" Fill="{Binding SelectedColor}" />
+        <colorPicker:ColorPicker Color="{Binding SelectedColor}"
+                                 Content="{Binding ContentView}">
+            
+        </colorPicker:ColorPicker>
     </StackPanel>
 </UserControl>

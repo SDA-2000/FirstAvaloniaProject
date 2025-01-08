@@ -9,6 +9,5 @@ public partial class ColorPickerView : UserControl
     public ColorPickerView()
     {
         InitializeComponent();
-        DataContext = new ColorPickerViewModel();
     }
 }
