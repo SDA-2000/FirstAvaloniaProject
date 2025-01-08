@@ -14,9 +14,10 @@ namespace GetStartedApp.ViewModels
         public ControlPanelViewModel(TextFormattingModel textFormatting)
         {
             _textFormatting = textFormatting;
+            var highlightColorIconViewModel = new HighlightColorIconViewModel(_textFormatting);
             
             FontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
-            HighlightColorPicker = new ColorPickerViewModel(new HighlightColorIconView());
+            HighlightColorPicker = new ColorPickerViewModel(new HighlightColorIconView(highlightColorIconViewModel));
             TextColorPicker = new ColorPickerViewModel(new TextColorIconView());
             
             FontFamilies = new ObservableCollection<FontFamily>

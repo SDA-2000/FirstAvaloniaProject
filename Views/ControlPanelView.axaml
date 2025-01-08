@@ -28,7 +28,6 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    
                     <views:FontSizeDatalistView DataContext="{Binding FontSizeDatalist}" />
                     
                     <Button Classes="ControlPanel"
@@ -45,7 +44,6 @@
                                       RelativePanel.AlignTopWithPanel="True" />
                         </RelativePanel>
                     </Button>
-                    
                     <Button Classes="ControlPanel"
                             Command="{Binding ReduceFontSize}">
                         <RelativePanel>
@@ -67,14 +65,12 @@
                                    FontWeight="Bold"
                                    Text="Ж" />
                     </ToggleButton>
-                    
                     <ToggleButton Classes="ControlPanel"
                                   IsChecked="{Binding IsItalic}">
                         <TextBlock FontSize="16" 
                                    FontStyle="Italic"
                                    Text="К" />
                     </ToggleButton>
-                    
                     <ToggleButton Classes="ControlPanel"
                                   IsChecked="{Binding IsUnderline}">
                         <TextBlock FontSize="16"

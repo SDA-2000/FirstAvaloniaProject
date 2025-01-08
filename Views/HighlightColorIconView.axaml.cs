@@ -1,13 +1,13 @@
-using Avalonia;
+using GetStartedApp.ViewModels;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
 namespace GetStartedApp.Views;
 
 public partial class HighlightColorIconView : UserControl
 {
-    public HighlightColorIconView()
+    public HighlightColorIconView(HighlightColorIconViewModel viewModel)
     {
         InitializeComponent();
+        DataContext = viewModel;
     }
 }
