@@ -3,6 +3,7 @@ using ReactiveUI;
 using Avalonia.Media;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using GetStartedApp.Views;
 
 namespace GetStartedApp.ViewModels
 {
@@ -13,7 +14,10 @@ namespace GetStartedApp.ViewModels
         public ControlPanelViewModel(TextFormattingModel textFormatting)
         {
             _textFormatting = textFormatting;
+            
             FontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
+            HighlightColorPicker = new ColorPickerViewModel(new HighlightColorIconView());
+            TextColorPicker = new ColorPickerViewModel(new TextColorIconView());
             
             FontFamilies = new ObservableCollection<FontFamily>
             {
@@ -29,7 +33,6 @@ namespace GetStartedApp.ViewModels
             
             IsBold = _textFormatting.IsBold;
             
-
             ReduceFontSize = ReactiveCommand.Create(() =>
             {
                 if (_textFormatting.FontSize <= 1) return;
@@ -48,6 +51,8 @@ namespace GetStartedApp.ViewModels
         public ICommand IncreaseFontSize { get; }
         
         public FontSizeDatalistViewModel FontSizeDatalist { get; }
+        public ColorPickerViewModel HighlightColorPicker { get; }
+        public ColorPickerViewModel TextColorPicker { get; }
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
         public FontFamily? SelectedFontFamily

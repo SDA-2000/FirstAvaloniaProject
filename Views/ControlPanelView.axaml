@@ -82,7 +82,7 @@
                                    Text="Ч" />
                     </ToggleButton>
                     
-                    <views:ColorPickerView />
+                    <views:ColorPickerView DataContext="{Binding HighlightColorPicker}" />
                 </WrapPanel>
             </TabItem>
         </TabControl>
