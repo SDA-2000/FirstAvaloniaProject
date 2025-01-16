@@ -1,28 +1,32 @@
 using Avalonia.Media;
 using Avalonia.Controls;
-using Avalonia.VisualTree;
 using ReactiveUI;
 
 namespace GetStartedApp.ViewModels;
 public class ColorPickerViewModel : ReactiveObject
 {
-    private Color _selectedColor = Colors.Transparent;
-    private Control _contentView;
+    private IBrush _selectedColor;
+    private readonly Control _contentView;
+    private readonly ColorPickerContentViewModelBase _contentViewModel;
 
-    public ColorPickerViewModel(Control contentView)
+    public ColorPickerViewModel(Control contentView, ColorPickerContentViewModelBase contentViewModel)
     {
         _contentView = contentView;
+        _contentViewModel = contentViewModel;
+        _selectedColor = contentViewModel.SelectedColor;
     }
 
-    public Color SelectedColor
+    public IBrush SelectedColor
     {
         get => _selectedColor;
-        set => this.RaiseAndSetIfChanged(ref _selectedColor, value);
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _selectedColor, value);
+            _contentViewModel.SelectedColor = value;
+        }
     }
     
-    public Control ContentView
-    {
-        get => _contentView;
-        set => this.RaiseAndSetIfChanged(ref _contentView, value);
-    }
+    public Control ContentView { get => _contentView; }
+    
+    public ColorPickerContentViewModelBase ContentViewModel { get => _contentViewModel; }
 }

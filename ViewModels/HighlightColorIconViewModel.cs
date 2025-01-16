@@ -4,9 +4,9 @@ using ReactiveUI;
 
 namespace GetStartedApp.ViewModels;
 
-public class HighlightColorIconViewModel : ReactiveObject
+public class HighlightColorIconViewModel : ColorPickerContentViewModelBase
 {
-    private Color _selectedColor;
+    private IBrush _selectedColor;
     private readonly TextFormattingModel _textFormatting;
 
     public HighlightColorIconViewModel(TextFormattingModel textFormatting)
@@ -15,7 +15,7 @@ public class HighlightColorIconViewModel : ReactiveObject
         SelectedColor = _textFormatting.HighlightColor;
     }
 
-    public Color SelectedColor
+    public IBrush SelectedColor
     {
         get => _selectedColor;
         set
@@ -24,4 +24,6 @@ public class HighlightColorIconViewModel : ReactiveObject
             _textFormatting.HighlightColor = value;
         }
     }
+    
+    public TextFormattingModel TextFormatting => _textFormatting;
 }

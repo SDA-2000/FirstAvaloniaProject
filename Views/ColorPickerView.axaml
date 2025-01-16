@@ -7,10 +7,6 @@
              x:DataType="viewModels:ColorPickerViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GetStartedApp.Views.ColorPickerView">
-    <StackPanel>
-        <colorPicker:ColorPicker Color="{Binding SelectedColor}"
-                                 Content="{Binding ContentView}">
-            
-        </colorPicker:ColorPicker>
-    </StackPanel>
+    <colorPicker:ColorPicker Color="{Binding SelectedColor, Mode=TwoWay}"
+                             Content="{Binding ContentView}" />
 </UserControl>

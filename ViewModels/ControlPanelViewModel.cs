@@ -10,6 +10,7 @@ namespace GetStartedApp.ViewModels
     public class ControlPanelViewModel : ReactiveObject
     {
         private readonly TextFormattingModel _textFormatting;
+        private readonly ColorPickerViewModel _highlightColorPicker;
         
         public ControlPanelViewModel(TextFormattingModel textFormatting)
         {
@@ -17,8 +18,12 @@ namespace GetStartedApp.ViewModels
             var highlightColorIconViewModel = new HighlightColorIconViewModel(_textFormatting);
             
             FontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
-            HighlightColorPicker = new ColorPickerViewModel(new HighlightColorIconView(highlightColorIconViewModel));
-            TextColorPicker = new ColorPickerViewModel(new TextColorIconView());
+            _highlightColorPicker = new ColorPickerViewModel
+            (
+                new HighlightColorIconView(highlightColorIconViewModel),
+                highlightColorIconViewModel
+            );
+            // TextColorPicker = new ColorPickerViewModel(new TextColorIconView());
             
             FontFamilies = new ObservableCollection<FontFamily>
             {
@@ -52,7 +57,7 @@ namespace GetStartedApp.ViewModels
         public ICommand IncreaseFontSize { get; }
         
         public FontSizeDatalistViewModel FontSizeDatalist { get; }
-        public ColorPickerViewModel HighlightColorPicker { get; }
+        public ColorPickerViewModel HighlightColorPicker => _highlightColorPicker;
         public ColorPickerViewModel TextColorPicker { get; }
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
@@ -64,17 +69,6 @@ namespace GetStartedApp.ViewModels
                 if (value == null || value == _textFormatting.FontFamily) return;
                 _textFormatting.FontFamily = value;
                 this.RaisePropertyChanged(nameof(SelectedFontFamily));
-            }
-        }
-        
-        public uint? SelectedFontSize
-        {
-            get => _textFormatting.FontSize;
-            set
-            {
-                if (value == null || value == _textFormatting.FontSize) return;
-                _textFormatting.FontSize = value.Value;
-                this.RaisePropertyChanged(nameof(SelectedFontSize));
             }
         }
 
@@ -107,5 +101,7 @@ namespace GetStartedApp.ViewModels
                 this.RaisePropertyChanged(nameof(IsUnderline));
             }
         }
+
+        public TextFormattingModel TextFormatting => _textFormatting;
     }   
 }
