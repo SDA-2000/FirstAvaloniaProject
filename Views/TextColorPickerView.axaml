@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:colorPicker="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.ColorPicker"
+             xmlns:viewModels="clr-namespace:GetStartedApp.ViewModels"
+             x:DataType="viewModels:TextColorPickerViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GetStartedApp.Views.TextColorPickerView">
+    <UserControl.Styles>
+        <StyleInclude Source="../Styles/TextColorPickerStyle.axaml"></StyleInclude>
+    </UserControl.Styles>
+    
+    <colorPicker:ColorPicker Color="{Binding SelectedColorForPicker, Mode=TwoWay}">
+        <colorPicker:ColorPicker.Content>
+            <RelativePanel>
+                <TextBlock RelativePanel.AlignHorizontalCenterWithPanel="True"
+                           Text="A"
+                           x:Name="BigAIcon"
+                           Classes="BigAIcon"/>
+                <Rectangle RelativePanel.Below="BigAIcon"
+                           RelativePanel.AlignHorizontalCenterWithPanel="True"
+                           Fill="{Binding TextColor}"
+                           Classes="PickerIcon"/>
+            </RelativePanel>
+        </colorPicker:ColorPicker.Content>
+    </colorPicker:ColorPicker>
+</UserControl>

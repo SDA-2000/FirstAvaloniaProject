@@ -3,6 +3,7 @@ using ReactiveUI;
 using Avalonia.Media;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using GetStartedApp.Views;
 
 namespace GetStartedApp.ViewModels
 {
@@ -14,6 +15,8 @@ namespace GetStartedApp.ViewModels
         {
             _textFormatting = textFormatting;
             FontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
+            HighlightColorPicker = new HighlightColorPickerViewModel(_textFormatting);
+            TextColorPicker = new TextColorPickerViewModel(_textFormatting);
             
             FontFamilies = new ObservableCollection<FontFamily>
             {
@@ -26,7 +29,9 @@ namespace GetStartedApp.ViewModels
                 new FontFamily("Consolas")
             };
             SelectedFontFamily = _textFormatting.FontFamily;
-
+            
+            IsBold = _textFormatting.IsBold;
+            
             ReduceFontSize = ReactiveCommand.Create(() =>
             {
                 if (_textFormatting.FontSize <= 1) return;
@@ -45,6 +50,8 @@ namespace GetStartedApp.ViewModels
         public ICommand IncreaseFontSize { get; }
         
         public FontSizeDatalistViewModel FontSizeDatalist { get; }
+        public HighlightColorPickerViewModel HighlightColorPicker { get; }
+        public TextColorPickerViewModel TextColorPicker { get; }
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
         public FontFamily? SelectedFontFamily
@@ -57,16 +64,37 @@ namespace GetStartedApp.ViewModels
                 this.RaisePropertyChanged(nameof(SelectedFontFamily));
             }
         }
-        
-        public uint? SelectedFontSize
+
+        public bool IsBold
         {
-            get => _textFormatting.FontSize;
+            get => _textFormatting.IsBold;
             set
             {
-                if (value == null || value == _textFormatting.FontSize) return;
-                _textFormatting.FontSize = value.Value;
-                this.RaisePropertyChanged(nameof(SelectedFontSize));
+                _textFormatting.IsBold = value;
+                this.RaisePropertyChanged(nameof(IsBold));
             }
         }
+        
+        public bool IsItalic
+        {
+            get => _textFormatting.IsItalic;
+            set
+            {
+                _textFormatting.IsItalic = value;
+                this.RaisePropertyChanged(nameof(IsItalic));
+            }
+        }
+        
+        public bool IsUnderline
+        {
+            get => _textFormatting.IsUnderline;
+            set
+            {
+                _textFormatting.IsUnderline = value;
+                this.RaisePropertyChanged(nameof(IsUnderline));
+            }
+        }
+
+        public TextFormattingModel TextFormatting => _textFormatting;
     }   
 }

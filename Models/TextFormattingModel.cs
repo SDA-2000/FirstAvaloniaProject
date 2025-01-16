@@ -6,6 +6,21 @@ namespace GetStartedApp.Models;
 
 public class TextFormattingModel : ReactiveObject
 {
+    public TextFormattingModel() { }
+
+    public TextFormattingModel(FontFamily fontFamily, uint fontSize, FontWeight fontWeight, 
+        FontStyle fontStyle, bool isBold, bool isItalic, IBrush textColor, IBrush backgroundColor)
+    {
+        FontFamily = fontFamily;
+        FontSize = fontSize;
+        FontWeight = fontWeight;
+        FontStyle = fontStyle;
+        IsBold = isBold;
+        IsItalic = isItalic;
+        TextColor = textColor;
+        HighlightColor = backgroundColor;
+    }
+    
     private FontFamily _fontFamily = new FontFamily("Calibri");
 
     public FontFamily FontFamily
@@ -62,34 +77,19 @@ public class TextFormattingModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _isUnderline, value);
     }
     
-    private Color _textColor = Colors.Black;
+    private IBrush _textColor = new SolidColorBrush(Colors.Black);
 
-    public Color TextColor
+    public IBrush TextColor
     {
         get => _textColor;
         set => this.RaiseAndSetIfChanged(ref _textColor, value);
     }
     
-    private Color _backgroundColor = Colors.Transparent;
+    private IBrush _highlightColor = new SolidColorBrush(Colors.Black);
 
-    public Color BackgroundColor
+    public IBrush HighlightColor
     {
-        get => _backgroundColor;
-        set => this.RaiseAndSetIfChanged(ref _backgroundColor, value);
-    }
-
-    public TextFormattingModel() { }
-
-    public TextFormattingModel(FontFamily fontFamily, uint fontSize, FontWeight fontWeight, FontStyle fontStyle,
-        bool isBold, bool isItalic, Color textColor, Color backgroundColor)
-    {
-        FontFamily = fontFamily;
-        FontSize = fontSize;
-        FontWeight = fontWeight;
-        FontStyle = fontStyle;
-        IsBold = isBold;
-        IsItalic = isItalic;
-        TextColor = textColor;
-        BackgroundColor = backgroundColor;
+        get => _highlightColor;
+        set => this.RaiseAndSetIfChanged(ref _highlightColor, value);
     }
 }
