@@ -78,11 +78,7 @@
                                    Text="Ч" />
                     </ToggleButton>
                     
-                    <views:ColorPickerView DataContext="{Binding HighlightColorPicker}" />
-                    
-                    <Rectangle Fill="{Binding HighlightColorPicker.ContentViewModel.TextFormatting.HighlightColor}" Width="20" Height="20" />
-                    <TextBlock Text="{Binding HighlightColorPicker.ContentViewModel.TextFormatting.FontFamily}"></TextBlock>
-                    
+                    <views:HighlightColorPickerView DataContext="{Binding HighlightColorPicker}" />
                 </WrapPanel>
             </TabItem>
         </TabControl>

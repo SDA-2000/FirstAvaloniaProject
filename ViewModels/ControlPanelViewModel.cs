@@ -10,19 +10,12 @@ namespace GetStartedApp.ViewModels
     public class ControlPanelViewModel : ReactiveObject
     {
         private readonly TextFormattingModel _textFormatting;
-        private readonly ColorPickerViewModel _highlightColorPicker;
         
         public ControlPanelViewModel(TextFormattingModel textFormatting)
         {
             _textFormatting = textFormatting;
-            var highlightColorIconViewModel = new HighlightColorIconViewModel(_textFormatting);
-            
             FontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
-            _highlightColorPicker = new ColorPickerViewModel
-            (
-                new HighlightColorIconView(highlightColorIconViewModel),
-                highlightColorIconViewModel
-            );
+            HighlightColorPicker = new HighlightColorPickerViewModel(_textFormatting);
             // TextColorPicker = new ColorPickerViewModel(new TextColorIconView());
             
             FontFamilies = new ObservableCollection<FontFamily>
@@ -57,8 +50,9 @@ namespace GetStartedApp.ViewModels
         public ICommand IncreaseFontSize { get; }
         
         public FontSizeDatalistViewModel FontSizeDatalist { get; }
-        public ColorPickerViewModel HighlightColorPicker => _highlightColorPicker;
-        public ColorPickerViewModel TextColorPicker { get; }
+        public HighlightColorPickerViewModel HighlightColorPicker { get; }
+
+        public HighlightColorPickerViewModel TextHighlightColorPicker { get; }
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
         public FontFamily? SelectedFontFamily
