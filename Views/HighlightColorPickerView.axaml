@@ -16,10 +16,12 @@
             <RelativePanel>
                 <PathIcon Data="{StaticResource Pencil}"
                           RelativePanel.AlignHorizontalCenterWithPanel="True"
-                          x:Name="PencilIcon" />
+                          x:Name="PencilIcon"
+                          Classes="PencilIcon"/>
                 <Rectangle RelativePanel.Below="PencilIcon"
                            RelativePanel.AlignHorizontalCenterWithPanel="True"
-                           Fill="{Binding HighlightColor}" />
+                           Fill="{Binding HighlightColor}"
+                           Classes="PickerIcon"/>
             </RelativePanel>
         </colorPicker:ColorPicker.Content>
     </colorPicker:ColorPicker>
