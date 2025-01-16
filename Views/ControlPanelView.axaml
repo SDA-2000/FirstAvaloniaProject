@@ -79,6 +79,7 @@
                     </ToggleButton>
                     
                     <views:HighlightColorPickerView DataContext="{Binding HighlightColorPicker}" />
+                    <views:TextColorPickerView DataContext="{Binding TextColorPicker}" />
                 </WrapPanel>
             </TabItem>
         </TabControl>

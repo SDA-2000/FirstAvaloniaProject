@@ -16,7 +16,7 @@ namespace GetStartedApp.ViewModels
             _textFormatting = textFormatting;
             FontSizeDatalist = new FontSizeDatalistViewModel(_textFormatting);
             HighlightColorPicker = new HighlightColorPickerViewModel(_textFormatting);
-            // TextColorPicker = new ColorPickerViewModel(new TextColorIconView());
+            TextColorPicker = new TextColorPickerViewModel(_textFormatting);
             
             FontFamilies = new ObservableCollection<FontFamily>
             {
@@ -51,8 +51,7 @@ namespace GetStartedApp.ViewModels
         
         public FontSizeDatalistViewModel FontSizeDatalist { get; }
         public HighlightColorPickerViewModel HighlightColorPicker { get; }
-
-        public HighlightColorPickerViewModel TextHighlightColorPicker { get; }
+        public TextColorPickerViewModel TextColorPicker { get; }
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
         public FontFamily? SelectedFontFamily
