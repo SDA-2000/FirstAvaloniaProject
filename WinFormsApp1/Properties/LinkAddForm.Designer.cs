@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinkAddForm));
             OKbutton = new Button();
             NameLinkLab = new Label();
             URLNameTBox = new TextBox();
@@ -87,6 +88,7 @@
             Controls.Add(URLNameTBox);
             Controls.Add(NameLinkLab);
             Controls.Add(OKbutton);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LinkAddForm";
             Text = "Link import";
             Load += LinkAddForm_Load;

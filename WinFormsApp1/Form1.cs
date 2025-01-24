@@ -12,6 +12,7 @@ namespace WinFormsApp1
 {
     public partial class WordPad : Form
     {
+        private string currentFilePath = string.Empty;
         public string open_path = "";
         public WordPad()
         {
@@ -19,6 +20,7 @@ namespace WinFormsApp1
             List<string> colorList = new List<string>();
             int sumRGB;
             saveFileDialog1.Filter = "Text File(*.txt)|*.txt|TM Wordpad File (*.tm)|*.tm";
+
             InstalledFontCollection fonts = new InstalledFontCollection();
             foreach (FontFamily family in fonts.Families)
             {
@@ -90,18 +92,19 @@ namespace WinFormsApp1
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearHighlight();
             try
             {
-                
+
                 if (!string.IsNullOrEmpty(open_path))
                 {
-                    
+
                     File.WriteAllText(open_path, richTextBox1.Text);
                     MessageBox.Show("File was saved sucsessfully");
                 }
                 else
                 {
-                    
+
                     saveAsToolStripMenuItem_Click(sender, e);
                 }
             }
@@ -120,6 +123,7 @@ namespace WinFormsApp1
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
             string filename = saveFileDialog1.FileName;
+            ClearHighlight();
             richTextBox1.SaveFile(filename, RichTextBoxStreamType.RichText);
             MessageBox.Show("File saved!");
 
@@ -127,11 +131,24 @@ namespace WinFormsApp1
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
-                return;
-            string filename = openFileDialog1.FileName;
-            richTextBox1.LoadFile(filename, RichTextBoxStreamType.RichText);
-            MessageBox.Show("File opened!");
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "TM Files (*.tm)|*.tm|All Files (*.*)|*.*";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string filePath = openFileDialog.FileName;
+                        richTextBox1.LoadFile(filePath, RichTextBoxStreamType.RichText);
+                        currentFilePath = filePath;
+                        this.Text = $"TMPad - {Path.GetFileName(filePath)}";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error of opening file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -270,7 +287,7 @@ namespace WinFormsApp1
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Не удалось открыть ссылку: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Error of opening link: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     };
@@ -321,11 +338,11 @@ namespace WinFormsApp1
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            using(var findtext = new FindForm())
+            using (var findtext = new FindForm())
             {
-                if(findtext.ShowDialog() == DialogResult.OK)
+                if (findtext.ShowDialog() == DialogResult.OK)
                 {
-                    FindText(findtext.Text);
+                    FindText(findtext.KeyText);
                 }
             }
         }
@@ -407,31 +424,64 @@ namespace WinFormsApp1
             richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
         }
 
+        private void ClearHighlight()
+        {
+            richTextBox1.SelectionStart = 0;
+            richTextBox1.SelectionLength = richTextBox1.TextLength;
+            richTextBox1.SelectionBackColor = richTextBox1.BackColor;
+        }
+
+
         private void FindText(string searchText)
+        {
+            ClearHighlight();
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                int startIndex = 0;
+                while (startIndex < richTextBox1.TextLength)
+                {
+                    int foundIndex = richTextBox1.Find(searchText, startIndex, RichTextBoxFinds.None);
+
+                    if (foundIndex != -1)
+                    {
+                        richTextBox1.SelectionStart = foundIndex;
+                        richTextBox1.SelectionLength = searchText.Length;
+                        richTextBox1.SelectionBackColor = Color.Yellow;
+                        startIndex = foundIndex + searchText.Length;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            richTextBox1.SelectionLength = 0;
+            richTextBox1.SelectionBackColor = richTextBox1.BackColor;
+        }
+
+        private void ReplaceText(string searchText, string replaceText)
         {
             if (!string.IsNullOrEmpty(searchText))
             {
                 int startIndex = 0;
                 while (startIndex < richTextBox1.TextLength)
                 {
-                    
                     int foundIndex = richTextBox1.Find(searchText, startIndex, RichTextBoxFinds.None);
                     if (foundIndex != -1)
-                    {
-                        
+                    {       
                         richTextBox1.SelectionStart = foundIndex;
                         richTextBox1.SelectionLength = searchText.Length;
-                        richTextBox1.SelectionBackColor = Color.Yellow; 
-                        startIndex = foundIndex + searchText.Length;
+                        richTextBox1.SelectedText = replaceText;
+                        startIndex = foundIndex + replaceText.Length;
                     }
                     else
                     {
-                        break; 
+                        break;
                     }
                 }
             }
         }
-
 
         private void UnderlinedButton_Click(object sender, EventArgs e)
         {
@@ -453,13 +503,42 @@ namespace WinFormsApp1
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using(var newfile = new CreateFileForm())
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                if(newfile.ShowDialog(this) == DialogResult.OK)
+                saveFileDialog.Filter = "TMPad Files (*.tm)|*.tm|All Files (*.*)|*.*";
+                saveFileDialog.Title = "Create file";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    File.Create(newfile.FileName + ".tm").Close();
+                    try
+                    {
+                        File.WriteAllText(saveFileDialog.FileName, "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang1033 {\\fonttbl;}\\viewkind4\\uc1\\pard\\sa200\\sl276\\slmult1\\f0\\fs22\\par}");
+
+                        MessageBox.Show("File Was created succsessfully", "Sucsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        this.Text = $"TMPad - {Path.GetFileName(saveFileDialog.FileName)}";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error of opening file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            using (var changeform = new ChangeForm())
+            {
+
+                if (changeform.ShowDialog(this) == DialogResult.OK)
+                {
+                    ReplaceText(changeform.KeyText, changeform.ChangeText);
+                }
+
+            }
+
+
         }
     }
 }

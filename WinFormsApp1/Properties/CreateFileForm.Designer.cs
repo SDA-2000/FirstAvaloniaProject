@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateFileForm));
             Name = new Label();
             textBox1 = new TextBox();
             OKButton = new Button();
@@ -67,6 +68,8 @@
             Controls.Add(OKButton);
             Controls.Add(textBox1);
             Controls.Add(Name);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+
             Text = "Create File";
             Load += CreateFileForm_Load;
             ResumeLayout(false);

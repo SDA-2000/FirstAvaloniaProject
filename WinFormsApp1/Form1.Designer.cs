@@ -49,10 +49,7 @@
             selectAllToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
-            fontsToolStripMenuItem = new ToolStripMenuItem();
-            fontSettingsToolStripMenuItem = new ToolStripMenuItem();
             colorsToolStripMenuItem = new ToolStripMenuItem();
-            fontColorSettingsToolStripMenuItem = new ToolStripMenuItem();
             backgroundColorSettingsToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
             imageToolStripMenuItem = new ToolStripMenuItem();
@@ -129,7 +126,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, fontsToolStripMenuItem, colorsToolStripMenuItem, toolStripMenuItem1 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, colorsToolStripMenuItem, toolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(940, 24);
@@ -218,40 +215,20 @@
             toolStripMenuItem3.Name = "toolStripMenuItem3";
             toolStripMenuItem3.Size = new Size(180, 22);
             toolStripMenuItem3.Text = "Change";
-            // 
-            // fontsToolStripMenuItem
-            // 
-            fontsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fontSettingsToolStripMenuItem });
-            fontsToolStripMenuItem.Name = "fontsToolStripMenuItem";
-            fontsToolStripMenuItem.Size = new Size(48, 20);
-            fontsToolStripMenuItem.Text = "Fonts";
-            // 
-            // fontSettingsToolStripMenuItem
-            // 
-            fontSettingsToolStripMenuItem.Name = "fontSettingsToolStripMenuItem";
-            fontSettingsToolStripMenuItem.Size = new Size(180, 22);
-            fontSettingsToolStripMenuItem.Text = "Font Settings";
-            fontSettingsToolStripMenuItem.Click += fontSettingsToolStripMenuItem_Click;
+            toolStripMenuItem3.Click += toolStripMenuItem3_Click;
             // 
             // colorsToolStripMenuItem
             // 
-            colorsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fontColorSettingsToolStripMenuItem, backgroundColorSettingsToolStripMenuItem });
+            colorsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { backgroundColorSettingsToolStripMenuItem });
             colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
             colorsToolStripMenuItem.Size = new Size(53, 20);
             colorsToolStripMenuItem.Text = "Colors";
             // 
-            // fontColorSettingsToolStripMenuItem
-            // 
-            fontColorSettingsToolStripMenuItem.Name = "fontColorSettingsToolStripMenuItem";
-            fontColorSettingsToolStripMenuItem.Size = new Size(212, 22);
-            fontColorSettingsToolStripMenuItem.Text = "Font Color Settings";
-            fontColorSettingsToolStripMenuItem.Click += fontColorSettingsToolStripMenuItem_Click;
-            // 
             // backgroundColorSettingsToolStripMenuItem
             // 
             backgroundColorSettingsToolStripMenuItem.Name = "backgroundColorSettingsToolStripMenuItem";
-            backgroundColorSettingsToolStripMenuItem.Size = new Size(212, 22);
-            backgroundColorSettingsToolStripMenuItem.Text = "Background ColorSettings";
+            backgroundColorSettingsToolStripMenuItem.Size = new Size(215, 22);
+            backgroundColorSettingsToolStripMenuItem.Text = "Background Color Settings";
             backgroundColorSettingsToolStripMenuItem.Click += backgroundColorSettingsToolStripMenuItem_Click;
             // 
             // toolStripMenuItem1
@@ -419,8 +396,6 @@
         private ToolStripMenuItem cutToolStripMenuItem;
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
-        private ToolStripMenuItem fontsToolStripMenuItem;
-        private ToolStripMenuItem fontSettingsToolStripMenuItem;
         private FontDialog fontDialog1;
         private ToolStripMenuItem selectAllToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip1;
@@ -430,7 +405,6 @@
         private ToolStripMenuItem selectAllToolStripMenuItem1;
         private ColorDialog colorDialog1;
         private ToolStripMenuItem colorsToolStripMenuItem;
-        private ToolStripMenuItem fontColorSettingsToolStripMenuItem;
         private Panel panel1;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem imageToolStripMenuItem;

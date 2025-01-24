@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindForm));
             KeyBox = new TextBox();
             label1 = new Label();
             OKButton = new Button();
@@ -67,6 +68,7 @@
             Controls.Add(OKButton);
             Controls.Add(label1);
             Controls.Add(KeyBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FindForm";
             Text = "Find text";
             ResumeLayout(false);
