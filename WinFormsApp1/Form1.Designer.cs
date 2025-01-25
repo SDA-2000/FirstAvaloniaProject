@@ -69,6 +69,7 @@
             BoldButton = new ToolStripButton();
             ItalicButton = new ToolStripButton();
             UnderlinedButton = new ToolStripButton();
+            btnTemplates = new ToolStripButton();
             colorDialog2 = new ColorDialog();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -183,42 +184,42 @@
             // copyToolStripMenuItem
             // 
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            copyToolStripMenuItem.Size = new Size(182, 34);
+            copyToolStripMenuItem.Size = new Size(270, 34);
             copyToolStripMenuItem.Text = "Copy";
             copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
             // pastToolStripMenuItem
             // 
             pastToolStripMenuItem.Name = "pastToolStripMenuItem";
-            pastToolStripMenuItem.Size = new Size(182, 34);
+            pastToolStripMenuItem.Size = new Size(270, 34);
             pastToolStripMenuItem.Text = "Paste";
             pastToolStripMenuItem.Click += pastToolStripMenuItem_Click;
             // 
             // cutToolStripMenuItem
             // 
             cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            cutToolStripMenuItem.Size = new Size(182, 34);
+            cutToolStripMenuItem.Size = new Size(270, 34);
             cutToolStripMenuItem.Text = "Cut";
             cutToolStripMenuItem.Click += cutToolStripMenuItem_Click;
             // 
             // selectAllToolStripMenuItem
             // 
             selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            selectAllToolStripMenuItem.Size = new Size(182, 34);
+            selectAllToolStripMenuItem.Size = new Size(270, 34);
             selectAllToolStripMenuItem.Text = "Select all";
             selectAllToolStripMenuItem.Click += selectAllToolStripMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(182, 34);
+            toolStripMenuItem2.Size = new Size(270, 34);
             toolStripMenuItem2.Text = "Find";
             toolStripMenuItem2.Click += toolStripMenuItem2_Click;
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(182, 34);
+            toolStripMenuItem3.Size = new Size(270, 34);
             toolStripMenuItem3.Text = "Change";
             toolStripMenuItem3.Click += toolStripMenuItem3_Click;
             // 
@@ -274,7 +275,7 @@
             // 
             toolStrip1.BackColor = SystemColors.AppWorkspace;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { FBox, SzBox, ColBox, AlignLeftButton, AlignCenterButton, AlignRightButton, BoldButton, ItalicButton, UnderlinedButton });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { FBox, SzBox, ColBox, AlignLeftButton, AlignCenterButton, AlignRightButton, BoldButton, ItalicButton, UnderlinedButton, btnTemplates });
             toolStrip1.Location = new Point(0, 35);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Padding = new Padding(0, 0, 3, 0);
@@ -365,6 +366,17 @@
             UnderlinedButton.Text = "toolStripButton1";
             UnderlinedButton.Click += UnderlinedButton_Click;
             // 
+            // btnTemplates
+            // 
+            btnTemplates.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            btnTemplates.ForeColor = Color.Black;
+            btnTemplates.ImageTransparentColor = Color.Magenta;
+            btnTemplates.Name = "btnTemplates";
+            btnTemplates.RightToLeftAutoMirrorImage = true;
+            btnTemplates.Size = new Size(136, 29);
+            btnTemplates.Text = "Style templates";
+            btnTemplates.Click += btnTemplates_Click;
+            // 
             // WordPad
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -433,5 +445,6 @@
         private ToolStripButton BoldButton;
         private ToolStripButton ItalicButton;
         private ToolStripButton UnderlinedButton;
+        private ToolStripButton btnTemplates;
     }
 }

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows.Forms;
+using GetStartedProject.Models;
 using GetStartedProject.Properties;
 
 
@@ -12,6 +13,7 @@ namespace WinFormsApp1
 {
     public partial class WordPad : Form
     {
+        private List<TextStyleTemplate> templates = new List<TextStyleTemplate>();
         private string currentFilePath = string.Empty;
         public string open_path = "";
         public WordPad()
@@ -577,6 +579,29 @@ namespace WinFormsApp1
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTemplates_Click(object sender, EventArgs e)
+        {
+            using (StyleTemplatePanel templatesForm = new StyleTemplatePanel(templates))
+            {
+                if (templatesForm.ShowDialog() == DialogResult.OK)
+                {
+                    var selectedTemplate = templatesForm.SelectedTemplate;
+                    if (selectedTemplate != null)
+                    {
+                        // Применяем шаблон к выделенному тексту
+                        richTextBox1.SelectionFont = selectedTemplate.Font;
+                        richTextBox1.SelectionColor = selectedTemplate.TextColor;
+                        richTextBox1.SelectionBackColor = selectedTemplate.BackgroundColor;
+                    }
+                }
+            }
         }
     }
 }
