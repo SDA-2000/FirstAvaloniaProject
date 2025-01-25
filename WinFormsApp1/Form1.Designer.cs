@@ -83,8 +83,9 @@
             richTextBox1.Cursor = Cursors.IBeam;
             richTextBox1.Dock = DockStyle.Fill;
             richTextBox1.Location = new Point(0, 0);
+            richTextBox1.Margin = new Padding(4, 5, 4, 5);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(940, 554);
+            richTextBox1.Size = new Size(1343, 923);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -92,44 +93,47 @@
             // 
             // contextMenuStrip1
             // 
+            contextMenuStrip1.ImageScalingSize = new Size(24, 24);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { copyToolStripMenuItem1, pastToolStripMenuItem1, cutToolStripMenuItem1, selectAllToolStripMenuItem1 });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(121, 92);
+            contextMenuStrip1.Size = new Size(153, 132);
             // 
             // copyToolStripMenuItem1
             // 
             copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
-            copyToolStripMenuItem1.Size = new Size(120, 22);
+            copyToolStripMenuItem1.Size = new Size(152, 32);
             copyToolStripMenuItem1.Text = "Copy";
             copyToolStripMenuItem1.Click += copyToolStripMenuItem1_Click;
             // 
             // pastToolStripMenuItem1
             // 
             pastToolStripMenuItem1.Name = "pastToolStripMenuItem1";
-            pastToolStripMenuItem1.Size = new Size(120, 22);
+            pastToolStripMenuItem1.Size = new Size(152, 32);
             pastToolStripMenuItem1.Text = "Paste";
             pastToolStripMenuItem1.Click += pastToolStripMenuItem1_Click;
             // 
             // cutToolStripMenuItem1
             // 
             cutToolStripMenuItem1.Name = "cutToolStripMenuItem1";
-            cutToolStripMenuItem1.Size = new Size(120, 22);
+            cutToolStripMenuItem1.Size = new Size(152, 32);
             cutToolStripMenuItem1.Text = "Cut";
             cutToolStripMenuItem1.Click += cutToolStripMenuItem1_Click;
             // 
             // selectAllToolStripMenuItem1
             // 
             selectAllToolStripMenuItem1.Name = "selectAllToolStripMenuItem1";
-            selectAllToolStripMenuItem1.Size = new Size(120, 22);
+            selectAllToolStripMenuItem1.Size = new Size(152, 32);
             selectAllToolStripMenuItem1.Text = "Select all";
             selectAllToolStripMenuItem1.Click += selectAllToolStripMenuItem1_Click;
             // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(24, 24);
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, colorsToolStripMenuItem, toolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(940, 24);
+            menuStrip1.Padding = new Padding(9, 3, 0, 3);
+            menuStrip1.Size = new Size(1343, 35);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -137,34 +141,35 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, saveToolStripMenuItem, saveAsToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(54, 29);
             fileToolStripMenuItem.Text = "File";
+            fileToolStripMenuItem.Click += fileToolStripMenuItem_Click;
             // 
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(180, 22);
+            newToolStripMenuItem.Size = new Size(270, 34);
             newToolStripMenuItem.Text = "New";
             newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(180, 22);
+            openToolStripMenuItem.Size = new Size(270, 34);
             openToolStripMenuItem.Text = "Open";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(180, 22);
+            saveToolStripMenuItem.Size = new Size(270, 34);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // saveAsToolStripMenuItem
             // 
             saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            saveAsToolStripMenuItem.Size = new Size(180, 22);
+            saveAsToolStripMenuItem.Size = new Size(270, 34);
             saveAsToolStripMenuItem.Text = "Save as...";
             saveAsToolStripMenuItem.Click += saveAsToolStripMenuItem_Click;
             // 
@@ -172,48 +177,48 @@
             // 
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { copyToolStripMenuItem, pastToolStripMenuItem, cutToolStripMenuItem, selectAllToolStripMenuItem, toolStripMenuItem2, toolStripMenuItem3 });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(39, 20);
+            editToolStripMenuItem.Size = new Size(58, 29);
             editToolStripMenuItem.Text = "Edit";
             // 
             // copyToolStripMenuItem
             // 
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            copyToolStripMenuItem.Size = new Size(180, 22);
+            copyToolStripMenuItem.Size = new Size(182, 34);
             copyToolStripMenuItem.Text = "Copy";
             copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
             // pastToolStripMenuItem
             // 
             pastToolStripMenuItem.Name = "pastToolStripMenuItem";
-            pastToolStripMenuItem.Size = new Size(180, 22);
+            pastToolStripMenuItem.Size = new Size(182, 34);
             pastToolStripMenuItem.Text = "Paste";
             pastToolStripMenuItem.Click += pastToolStripMenuItem_Click;
             // 
             // cutToolStripMenuItem
             // 
             cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            cutToolStripMenuItem.Size = new Size(180, 22);
+            cutToolStripMenuItem.Size = new Size(182, 34);
             cutToolStripMenuItem.Text = "Cut";
             cutToolStripMenuItem.Click += cutToolStripMenuItem_Click;
             // 
             // selectAllToolStripMenuItem
             // 
             selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            selectAllToolStripMenuItem.Size = new Size(180, 22);
+            selectAllToolStripMenuItem.Size = new Size(182, 34);
             selectAllToolStripMenuItem.Text = "Select all";
             selectAllToolStripMenuItem.Click += selectAllToolStripMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(180, 22);
+            toolStripMenuItem2.Size = new Size(182, 34);
             toolStripMenuItem2.Text = "Find";
             toolStripMenuItem2.Click += toolStripMenuItem2_Click;
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(180, 22);
+            toolStripMenuItem3.Size = new Size(182, 34);
             toolStripMenuItem3.Text = "Change";
             toolStripMenuItem3.Click += toolStripMenuItem3_Click;
             // 
@@ -221,13 +226,13 @@
             // 
             colorsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { backgroundColorSettingsToolStripMenuItem });
             colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-            colorsToolStripMenuItem.Size = new Size(53, 20);
+            colorsToolStripMenuItem.Size = new Size(79, 29);
             colorsToolStripMenuItem.Text = "Colors";
             // 
             // backgroundColorSettingsToolStripMenuItem
             // 
             backgroundColorSettingsToolStripMenuItem.Name = "backgroundColorSettingsToolStripMenuItem";
-            backgroundColorSettingsToolStripMenuItem.Size = new Size(215, 22);
+            backgroundColorSettingsToolStripMenuItem.Size = new Size(326, 34);
             backgroundColorSettingsToolStripMenuItem.Text = "Background Color Settings";
             backgroundColorSettingsToolStripMenuItem.Click += backgroundColorSettingsToolStripMenuItem_Click;
             // 
@@ -235,20 +240,20 @@
             // 
             toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { imageToolStripMenuItem, linkToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(55, 20);
+            toolStripMenuItem1.Size = new Size(83, 29);
             toolStripMenuItem1.Text = "Import";
             // 
             // imageToolStripMenuItem
             // 
             imageToolStripMenuItem.Name = "imageToolStripMenuItem";
-            imageToolStripMenuItem.Size = new Size(180, 22);
+            imageToolStripMenuItem.Size = new Size(164, 34);
             imageToolStripMenuItem.Text = "Image";
             imageToolStripMenuItem.Click += imageToolStripMenuItem_Click;
             // 
             // linkToolStripMenuItem
             // 
             linkToolStripMenuItem.Name = "linkToolStripMenuItem";
-            linkToolStripMenuItem.Size = new Size(180, 22);
+            linkToolStripMenuItem.Size = new Size(164, 34);
             linkToolStripMenuItem.Text = "Link";
             linkToolStripMenuItem.Click += linkToolStripMenuItem_Click;
             // 
@@ -259,18 +264,21 @@
             // panel1
             // 
             panel1.Controls.Add(richTextBox1);
-            panel1.Location = new Point(0, 47);
+            panel1.Location = new Point(0, 78);
+            panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(940, 554);
+            panel1.Size = new Size(1343, 923);
             panel1.TabIndex = 2;
             // 
             // toolStrip1
             // 
             toolStrip1.BackColor = SystemColors.AppWorkspace;
+            toolStrip1.ImageScalingSize = new Size(24, 24);
             toolStrip1.Items.AddRange(new ToolStripItem[] { FBox, SzBox, ColBox, AlignLeftButton, AlignCenterButton, AlignRightButton, BoldButton, ItalicButton, UnderlinedButton });
-            toolStrip1.Location = new Point(0, 24);
+            toolStrip1.Location = new Point(0, 35);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(940, 25);
+            toolStrip1.Padding = new Padding(0, 0, 3, 0);
+            toolStrip1.Size = new Size(1343, 34);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             toolStrip1.ItemClicked += toolStrip1_ItemClicked;
@@ -278,7 +286,7 @@
             // FBox
             // 
             FBox.Name = "FBox";
-            FBox.Size = new Size(121, 25);
+            FBox.Size = new Size(171, 34);
             FBox.Text = "Select font...";
             FBox.SelectedIndexChanged += FBox_SelectedIndexChanged;
             FBox.Click += toolStripComboBox1_Click_1;
@@ -286,14 +294,14 @@
             // SzBox
             // 
             SzBox.Name = "SzBox";
-            SzBox.Size = new Size(121, 25);
+            SzBox.Size = new Size(171, 34);
             SzBox.Text = "Select size...";
             SzBox.SelectedIndexChanged += SzBox_SelectedIndexChanged;
             // 
             // ColBox
             // 
             ColBox.Name = "ColBox";
-            ColBox.Size = new Size(90, 22);
+            ColBox.Size = new Size(133, 29);
             ColBox.Text = "Select color...";
             ColBox.DropDownItemClicked += ColBox_DropDownItemClicked_1;
             // 
@@ -303,7 +311,7 @@
             AlignLeftButton.Image = (Image)resources.GetObject("AlignLeftButton.Image");
             AlignLeftButton.ImageTransparentColor = Color.Magenta;
             AlignLeftButton.Name = "AlignLeftButton";
-            AlignLeftButton.Size = new Size(23, 22);
+            AlignLeftButton.Size = new Size(34, 29);
             AlignLeftButton.Text = "toolStripButton1";
             AlignLeftButton.Click += AlignLeftButton_Click;
             // 
@@ -313,7 +321,7 @@
             AlignCenterButton.Image = (Image)resources.GetObject("AlignCenterButton.Image");
             AlignCenterButton.ImageTransparentColor = Color.Magenta;
             AlignCenterButton.Name = "AlignCenterButton";
-            AlignCenterButton.Size = new Size(23, 22);
+            AlignCenterButton.Size = new Size(34, 29);
             AlignCenterButton.Text = "toolStripButton1";
             AlignCenterButton.Click += AlignCenterButton_Click;
             // 
@@ -323,7 +331,7 @@
             AlignRightButton.Image = (Image)resources.GetObject("AlignRightButton.Image");
             AlignRightButton.ImageTransparentColor = Color.Magenta;
             AlignRightButton.Name = "AlignRightButton";
-            AlignRightButton.Size = new Size(23, 22);
+            AlignRightButton.Size = new Size(34, 29);
             AlignRightButton.Text = "toolStripButton1";
             AlignRightButton.Click += RightAlignment_Click;
             // 
@@ -333,7 +341,7 @@
             BoldButton.Image = (Image)resources.GetObject("BoldButton.Image");
             BoldButton.ImageTransparentColor = Color.Magenta;
             BoldButton.Name = "BoldButton";
-            BoldButton.Size = new Size(23, 22);
+            BoldButton.Size = new Size(34, 29);
             BoldButton.Text = "toolStripButton1";
             BoldButton.Click += BoldButton_Click;
             // 
@@ -343,7 +351,7 @@
             ItalicButton.Image = (Image)resources.GetObject("ItalicButton.Image");
             ItalicButton.ImageTransparentColor = Color.Magenta;
             ItalicButton.Name = "ItalicButton";
-            ItalicButton.Size = new Size(23, 22);
+            ItalicButton.Size = new Size(34, 29);
             ItalicButton.Text = "toolStripButton1";
             ItalicButton.Click += ItalicButton_Click;
             // 
@@ -353,22 +361,23 @@
             UnderlinedButton.Image = (Image)resources.GetObject("UnderlinedButton.Image");
             UnderlinedButton.ImageTransparentColor = Color.Magenta;
             UnderlinedButton.Name = "UnderlinedButton";
-            UnderlinedButton.Size = new Size(23, 22);
+            UnderlinedButton.Size = new Size(34, 29);
             UnderlinedButton.Text = "toolStripButton1";
             UnderlinedButton.Click += UnderlinedButton_Click;
             // 
             // WordPad
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
-            ClientSize = new Size(940, 601);
+            ClientSize = new Size(1343, 1002);
             Controls.Add(toolStrip1);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             ForeColor = Color.Transparent;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "WordPad";
             Text = "TMPad";
             Load += WordPad_Load;

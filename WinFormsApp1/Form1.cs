@@ -22,10 +22,13 @@ namespace WinFormsApp1
             saveFileDialog1.Filter = "Text File(*.txt)|*.txt|TM Wordpad File (*.tm)|*.tm";
 
             InstalledFontCollection fonts = new InstalledFontCollection();
+            FBox.ComboBox.DrawMode = DrawMode.OwnerDrawFixed;
             foreach (FontFamily family in fonts.Families)
             {
                 FBox.Items.Add(family.Name);
             }
+            FBox.ComboBox.DrawItem += ToolStripComboBox1_DrawItem;
+
             for (int i = 4; i < 100; i += 2)
                 SzBox.Items.Add(i);
 
@@ -79,6 +82,21 @@ namespace WinFormsApp1
             return sum;
         }
 
+        private void ToolStripComboBox1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            ComboBox comboBox = sender as ComboBox;
+            string fontName = comboBox.Items[e.Index].ToString();
+
+            e.DrawBackground();
+            e.DrawFocusRectangle();
+
+            using (Font font = new Font(fontName, 10))
+            {
+                e.Graphics.DrawString(fontName, font, Brushes.Black, e.Bounds);
+            }
+        }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -393,17 +411,22 @@ namespace WinFormsApp1
             if (richTextBox1.SelectionFont is null)
                 return;
 
-            BoldButton.Checked = !BoldButton.Checked;
-
-
-            FontStyle style = richTextBox1.SelectionFont.Style;
+            FontStyle currentStyle = richTextBox1.SelectionFont.Style;
 
             if (richTextBox1.SelectionFont.Bold)
-                style &= ~FontStyle.Bold;
+            {
+                currentStyle &= ~FontStyle.Bold;
+            }
             else
-                style |= FontStyle.Bold;
+            {
+                currentStyle |= FontStyle.Bold;
+            }
 
-            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily,
+                                                  richTextBox1.SelectionFont.Size,
+                                                  currentStyle);
+
+            BoldButton.Checked = !BoldButton.Checked;
         }
 
         private void ItalicButton_Click(object sender, EventArgs e)
@@ -411,17 +434,22 @@ namespace WinFormsApp1
             if (richTextBox1.SelectionFont is null)
                 return;
 
-            ItalicButton.Checked = !ItalicButton.Checked;
+            FontStyle currentStyle = richTextBox1.SelectionFont.Style;
 
-
-            FontStyle style = richTextBox1.SelectionFont.Style;
-
-            if (richTextBox1.SelectionFont.Bold)
-                style &= ~FontStyle.Italic;
+            if (richTextBox1.SelectionFont.Italic)
+            {
+                currentStyle &= ~FontStyle.Italic;
+            }
             else
-                style |= FontStyle.Italic;
+            {
+                currentStyle |= FontStyle.Italic;
+            }
 
-            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily,
+                                                  richTextBox1.SelectionFont.Size,
+                                                  currentStyle);
+
+            ItalicButton.Checked = !ItalicButton.Checked;
         }
 
         private void ClearHighlight()
@@ -469,7 +497,7 @@ namespace WinFormsApp1
                 {
                     int foundIndex = richTextBox1.Find(searchText, startIndex, RichTextBoxFinds.None);
                     if (foundIndex != -1)
-                    {       
+                    {
                         richTextBox1.SelectionStart = foundIndex;
                         richTextBox1.SelectionLength = searchText.Length;
                         richTextBox1.SelectedText = replaceText;
@@ -488,17 +516,22 @@ namespace WinFormsApp1
             if (richTextBox1.SelectionFont is null)
                 return;
 
-            UnderlinedButton.Checked = !UnderlinedButton.Checked;
+            FontStyle currentStyle = richTextBox1.SelectionFont.Style;
 
-
-            FontStyle style = richTextBox1.SelectionFont.Style;
-
-            if (richTextBox1.SelectionFont.Bold)
-                style &= ~FontStyle.Underline;
+            if (richTextBox1.SelectionFont.Underline)
+            {
+                currentStyle &= ~FontStyle.Underline;
+            }
             else
-                style |= FontStyle.Underline;
+            {
+                currentStyle |= FontStyle.Underline;
+            }
 
-            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily,
+                                                  richTextBox1.SelectionFont.Size,
+                                                  currentStyle);
+
+            UnderlinedButton.Checked = !UnderlinedButton.Checked;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -538,6 +571,11 @@ namespace WinFormsApp1
 
             }
 
+
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
     }
