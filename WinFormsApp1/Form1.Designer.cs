@@ -63,12 +63,14 @@
             FBox = new ToolStripComboBox();
             SzBox = new ToolStripComboBox();
             ColBox = new ToolStripDropDownButton();
+            HLBox = new ToolStripDropDownButton();
             AlignLeftButton = new ToolStripButton();
             AlignCenterButton = new ToolStripButton();
             AlignRightButton = new ToolStripButton();
             BoldButton = new ToolStripButton();
             ItalicButton = new ToolStripButton();
             UnderlinedButton = new ToolStripButton();
+            btnTemplates = new ToolStripButton();
             colorDialog2 = new ColorDialog();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -148,28 +150,28 @@
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(270, 34);
+            newToolStripMenuItem.Size = new Size(185, 34);
             newToolStripMenuItem.Text = "New";
             newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(270, 34);
+            openToolStripMenuItem.Size = new Size(185, 34);
             openToolStripMenuItem.Text = "Open";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(270, 34);
+            saveToolStripMenuItem.Size = new Size(185, 34);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // saveAsToolStripMenuItem
             // 
             saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            saveAsToolStripMenuItem.Size = new Size(270, 34);
+            saveAsToolStripMenuItem.Size = new Size(185, 34);
             saveAsToolStripMenuItem.Text = "Save as...";
             saveAsToolStripMenuItem.Click += saveAsToolStripMenuItem_Click;
             // 
@@ -274,7 +276,7 @@
             // 
             toolStrip1.BackColor = SystemColors.AppWorkspace;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { FBox, SzBox, ColBox, AlignLeftButton, AlignCenterButton, AlignRightButton, BoldButton, ItalicButton, UnderlinedButton });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { FBox, SzBox, ColBox, HLBox, AlignLeftButton, AlignCenterButton, AlignRightButton, BoldButton, ItalicButton, UnderlinedButton, btnTemplates });
             toolStrip1.Location = new Point(0, 35);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Padding = new Padding(0, 0, 3, 0);
@@ -301,9 +303,16 @@
             // ColBox
             // 
             ColBox.Name = "ColBox";
-            ColBox.Size = new Size(133, 29);
-            ColBox.Text = "Select color...";
+            ColBox.Size = new Size(108, 29);
+            ColBox.Text = "Text Color";
             ColBox.DropDownItemClicked += ColBox_DropDownItemClicked_1;
+            // 
+            // HLBox
+            // 
+            HLBox.Name = "HLBox";
+            HLBox.Size = new Size(151, 29);
+            HLBox.Text = "Highlight Color";
+            HLBox.DropDownItemClicked += HLBox_DropDownItemClicked_1;
             // 
             // AlignLeftButton
             // 
@@ -364,6 +373,17 @@
             UnderlinedButton.Size = new Size(34, 29);
             UnderlinedButton.Text = "toolStripButton1";
             UnderlinedButton.Click += UnderlinedButton_Click;
+            // 
+            // btnTemplates
+            // 
+            btnTemplates.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            btnTemplates.ForeColor = Color.Black;
+            btnTemplates.ImageTransparentColor = Color.Magenta;
+            btnTemplates.Name = "btnTemplates";
+            btnTemplates.RightToLeftAutoMirrorImage = true;
+            btnTemplates.Size = new Size(136, 29);
+            btnTemplates.Text = "Style templates";
+            btnTemplates.Click += btnTemplates_Click;
             // 
             // WordPad
             // 
@@ -433,5 +453,7 @@
         private ToolStripButton BoldButton;
         private ToolStripButton ItalicButton;
         private ToolStripButton UnderlinedButton;
+        private ToolStripButton btnTemplates;
+        private ToolStripDropDownButton HLBox;
     }
 }
