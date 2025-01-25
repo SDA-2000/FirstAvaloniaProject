@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using GetStartedProject.Models;
 using GetStartedProject.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 
 
 namespace WinFormsApp1
@@ -46,6 +48,7 @@ namespace WinFormsApp1
             foreach (string color in colorList)
             {
                 ColBox.DropDownItems.Add(color);
+                HLBox.DropDownItems.Add(color);
             }
             for (int i = 0; i < ColBox.DropDownItems.Count; i++)
             {
@@ -54,10 +57,7 @@ namespace WinFormsApp1
                 selectedColor = (KnownColor)System.Enum.Parse(typeof(KnownColor), colorList[i]);
                 ColBox.DropDownItems[i].BackColor = Color.FromKnownColor(selectedColor);
 
-
                 Color col = Color.FromName(colorList[i]);
-
-
 
                 sumRGB = ConvertToRGB(col);
                 if (sumRGB <= 382)
@@ -69,6 +69,34 @@ namespace WinFormsApp1
                     ColBox.DropDownItems[i].ForeColor = Color.Black;
                 }
             }
+            for (int i = 0; i < HLBox.DropDownItems.Count; i++)
+            {
+
+                KnownColor selectedColor;
+                selectedColor = (KnownColor)System.Enum.Parse(typeof(KnownColor), colorList[i]);
+                HLBox.DropDownItems[i].BackColor = Color.FromKnownColor(selectedColor);
+
+                Color col = Color.FromName(colorList[i]);
+
+                sumRGB = ConvertToRGB(col);
+                if (sumRGB <= 382)
+                {
+                    HLBox.DropDownItems[i].ForeColor = Color.White;
+                }
+                else if (sumRGB > 382)
+                {
+                    HLBox.DropDownItems[i].ForeColor = Color.Black;
+                }
+            }
+
+            FBox.Text = richTextBox1.Font.Name;
+            SzBox.Text = richTextBox1.Font.Size.ToString();
+
+            ColBox.BackColor = Color.Black;
+            ColBox.ForeColor = Color.White;
+
+            HLBox.BackColor = Color.Transparent;
+            HLBox.ForeColor = Color.Black;
         }
 
         private int ConvertToRGB(System.Drawing.Color c)
@@ -381,7 +409,35 @@ namespace WinFormsApp1
             KnownColor selectedColor;
             selectedColor = (KnownColor)System.Enum.Parse(typeof(KnownColor), e.ClickedItem.Text);
             richTextBox1.SelectionColor = Color.FromKnownColor(selectedColor);
+
             ColBox.BackColor = Color.FromKnownColor(selectedColor);
+            int sumRGB = ConvertToRGB(ColBox.BackColor);
+            if (sumRGB <= 382)
+            {
+                ColBox.ForeColor = Color.White;
+            }
+            else if (sumRGB > 382)
+            {
+                ColBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void HLBox_DropDownItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+            KnownColor selectedColor;
+            selectedColor = (KnownColor)System.Enum.Parse(typeof(KnownColor), e.ClickedItem.Text);
+            richTextBox1.SelectionBackColor = Color.FromKnownColor(selectedColor);
+
+            HLBox.BackColor = Color.FromKnownColor(selectedColor);
+            int sumRGB = ConvertToRGB(HLBox.BackColor);
+            if (sumRGB <= 382)
+            {
+                HLBox.ForeColor = Color.White;
+            }
+            else if (sumRGB > 382)
+            {
+                HLBox.ForeColor = Color.Black;
+            }
         }
 
         private void AlignLeftButton_Click(object sender, EventArgs e)
@@ -575,7 +631,6 @@ namespace WinFormsApp1
 
 
         }
-
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -595,10 +650,19 @@ namespace WinFormsApp1
                     var selectedTemplate = templatesForm.SelectedTemplate;
                     if (selectedTemplate != null)
                     {
-                        // Применяем шаблон к выделенному тексту
                         richTextBox1.SelectionFont = selectedTemplate.Font;
+                        FBox.Text = selectedTemplate.Font.FontFamily.ToString();
+                        SzBox.Text = selectedTemplate.Font.Size.ToString();
+
                         richTextBox1.SelectionColor = selectedTemplate.TextColor;
+                        ColBox.BackColor = selectedTemplate.TextColor;
+
                         richTextBox1.SelectionBackColor = selectedTemplate.BackgroundColor;
+                        HLBox.BackColor = selectedTemplate.BackgroundColor;
+
+                        BoldButton.Checked = selectedTemplate.Font.Bold;
+                        ItalicButton.Checked = selectedTemplate.Font.Italic;
+                        UnderlinedButton.Checked = selectedTemplate.Font.Underline;
                     }
                 }
             }
