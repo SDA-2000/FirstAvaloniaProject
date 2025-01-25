@@ -2,6 +2,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.IO;
+using System.IO.Compression;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -147,7 +148,7 @@ namespace WinFormsApp1
                 if (!string.IsNullOrEmpty(open_path))
                 {
 
-                    File.WriteAllText(open_path, richTextBox1.Text);
+                    SaveCompressedFile(open_path, richTextBox1.Text);
                     MessageBox.Show("File was saved sucsessfully");
                 }
                 else
@@ -170,32 +171,76 @@ namespace WinFormsApp1
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
-            string filename = saveFileDialog1.FileName;
-            ClearHighlight();
-            richTextBox1.SaveFile(filename, RichTextBoxStreamType.RichText);
-            MessageBox.Show("File saved!");
 
+            string filePath = saveFileDialog1.FileName;
+
+            try
+            {
+                if (Path.GetExtension(filePath).ToLower() == ".tm")
+                {
+                    SaveCompressedFile(filePath, richTextBox1.Rtf);
+                }
+                else
+                {
+                    richTextBox1.SaveFile(filePath, RichTextBoxStreamType.RichText);
+                }
+
+                MessageBox.Show("File saved successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SaveCompressedFile(string filePath, string text)
+        {
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+            using (GZipStream compressionStream = new GZipStream(fileStream, CompressionMode.Compress))
+            using (StreamWriter writer = new StreamWriter(compressionStream, Encoding.UTF8))
+            {
+                writer.Write(text);
+            }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "TM Files (*.tm)|*.tm|All Files (*.*)|*.*";
+                openFileDialog.Filter = "Compressed TM Files (*.tm)|*.tm|All Files (*.*)|*.*";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
                         string filePath = openFileDialog.FileName;
-                        richTextBox1.LoadFile(filePath, RichTextBoxStreamType.RichText);
+                        if (Path.GetExtension(filePath).ToLower() == ".tm")
+                        {
+                            string decompressedContent = LoadCompressedFile(filePath);
+                            richTextBox1.Rtf = decompressedContent;
+                        }
+                        else
+                        {
+                            richTextBox1.LoadFile(filePath, RichTextBoxStreamType.RichText);
+                        }
+
                         currentFilePath = filePath;
                         this.Text = $"TMPad - {Path.GetFileName(filePath)}";
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error of opening file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error opening file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private string LoadCompressedFile(string filePath)
+        {
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (GZipStream decompressionStream = new GZipStream(fileStream, CompressionMode.Decompress))
+            using (StreamReader reader = new StreamReader(decompressionStream, Encoding.UTF8))
+            {
+                return reader.ReadToEnd();
             }
         }
 
