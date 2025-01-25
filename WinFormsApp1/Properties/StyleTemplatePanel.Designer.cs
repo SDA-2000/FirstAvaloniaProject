@@ -32,7 +32,6 @@
             listBoxTemplates = new ListBox();
             btnApply = new Button();
             btnDelete = new Button();
-            txtTemplateName = new TextBox();
             SuspendLayout();
             // 
             // btnAdd
@@ -74,19 +73,11 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
-            // txtTemplateName
-            // 
-            txtTemplateName.Location = new Point(12, 448);
-            txtTemplateName.Name = "txtTemplateName";
-            txtTemplateName.Size = new Size(349, 31);
-            txtTemplateName.TabIndex = 4;
-            // 
             // StyleTemplatePanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(373, 491);
-            Controls.Add(txtTemplateName);
+            ClientSize = new Size(373, 451);
             Controls.Add(btnDelete);
             Controls.Add(btnApply);
             Controls.Add(listBoxTemplates);
@@ -95,7 +86,6 @@
             Text = "Font Style Templates";
             Load += StyleTemplatePanel_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -104,6 +94,5 @@
         private ListBox listBoxTemplates;
         private Button btnApply;
         private Button btnDelete;
-        private TextBox txtTemplateName;
     }
 }

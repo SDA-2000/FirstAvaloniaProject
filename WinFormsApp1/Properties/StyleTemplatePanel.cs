@@ -35,23 +35,13 @@ namespace GetStartedProject.Properties
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (FontDialog fontDialog = new FontDialog())
-            using (ColorDialog textColorDialog = new ColorDialog())
-            using (ColorDialog bgColorDialog = new ColorDialog())
+            using (AddStyleTemplateDialog dialog = new AddStyleTemplateDialog())
             {
-                if (fontDialog.ShowDialog() == DialogResult.OK &&
-                    textColorDialog.ShowDialog() == DialogResult.OK &&
-                    bgColorDialog.ShowDialog() == DialogResult.OK)
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    string templateName = txtTemplateName.Text;
-                    var newTemplate = new TextStyleTemplate(
-                        templateName,
-                        fontDialog.Font,
-                        textColorDialog.Color,
-                        bgColorDialog.Color);
-
+                    var newTemplate = dialog.SelectedTemplate;
                     Templates.Add(newTemplate);
-                    listBoxTemplates.Items.Add(templateName);
+                    listBoxTemplates.Items.Add(newTemplate.Name);
                 }
             }
         }
