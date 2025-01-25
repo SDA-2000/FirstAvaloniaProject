@@ -22,10 +22,38 @@ namespace GetStartedProject.Properties
             InitializeComponent();
             Templates = templates;
 
+            listBoxTemplates.DrawMode = DrawMode.OwnerDrawFixed;
+            listBoxTemplates.DrawItem += ListBoxTemplates_DrawItem;
+
             foreach (var template in Templates)
             {
                 listBoxTemplates.Items.Add(template.Name);
             }
+        }
+
+        private void ListBoxTemplates_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0 || e.Index >= Templates.Count) return;
+
+            var template = Templates[e.Index];
+
+            e.DrawBackground();
+            e.Graphics.FillRectangle(
+                e.State.HasFlag(DrawItemState.Selected)
+                    ? SystemBrushes.Highlight
+                    : new SolidBrush(template.BackgroundColor),
+                e.Bounds);
+
+            using (Brush textBrush = new SolidBrush(template.TextColor))
+            {
+                e.Graphics.DrawString(
+                    template.Name,
+                    template.Font,
+                    textBrush,
+                    e.Bounds.Location);
+            }
+
+            e.DrawFocusRectangle();
         }
 
         private void StyleTemplatePanel_Load(object sender, EventArgs e)
@@ -68,11 +96,6 @@ namespace GetStartedProject.Properties
                 Templates.RemoveAt(index);
                 listBoxTemplates.Items.RemoveAt(index);
             }
-        }
-
-        private void btnDelete_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
